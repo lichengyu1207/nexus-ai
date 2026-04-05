@@ -1,0 +1,188 @@
+@import './design-tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-bg-primary text-text-primary antialiased;
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+
+  * {
+    @apply border-border-light;
+  }
+
+  ::selection {
+    @apply bg-primary/30 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-secondary rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border-light rounded-full hover:bg-text-disabled;
+  }
+}
+
+@layer components {
+  .glass {
+    background: var(--color-bg-glass);
+    backdrop-filter: blur(var(--blur-md));
+    -webkit-backdrop-filter: blur(var(--blur-md));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+  }
+
+  .glass-sm {
+    background: rgba(17, 24, 39, 0.5);
+    backdrop-filter: blur(var(--blur-sm));
+    -webkit-backdrop-filter: blur(var(--blur-sm));
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+  }
+
+  .glass-card {
+    background: var(--color-bg-glass);
+    backdrop-filter: blur(var(--blur-md));
+    -webkit-backdrop-filter: blur(var(--blur-md));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-5);
+  }
+
+  .glass-sidebar {
+    background: rgba(10, 15, 26, 0.85);
+    backdrop-filter: blur(var(--blur-lg));
+    -webkit-backdrop-filter: blur(var(--blur-lg));
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center font-medium rounded-lg transition-all;
+    @apply bg-primary text-gray-900 hover:bg-primary-dark;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/50;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply shadow-sm hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center font-medium rounded-lg transition-all;
+    @apply bg-transparent border border-primary text-primary;
+    @apply hover:bg-primary/10;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/50;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center font-medium rounded-lg transition-all;
+    @apply bg-transparent border border-status-error text-status-error;
+    @apply hover:bg-status-error/10;
+    @apply focus:outline-none focus:ring-2 focus:ring-status-error/50;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input-base {
+    @apply w-full bg-bg-tertiary border border-border-light rounded-lg px-3 py-2;
+    @apply text-text-primary placeholder:text-text-disabled;
+    @apply focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary;
+    @apply transition-all;
+  }
+
+  .input-error {
+    @apply border-status-error focus:border-status-error focus:ring-status-error;
+  }
+
+  .card {
+    @apply bg-bg-secondary rounded-xl border border-border-light p-5;
+    @apply hover:border-primary/30 hover:shadow-lg;
+    @apply transition-all duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-gold {
+    @apply bg-primary/20 text-primary-dark;
+  }
+
+  .badge-success {
+    @apply bg-status-success/20 text-status-success;
+  }
+
+  .badge-warning {
+    @apply bg-status-warning/20 text-status-warning;
+  }
+
+  .badge-error {
+    @apply bg-status-error/20 text-status-error;
+  }
+
+  .badge-info {
+    @apply bg-status-info/20 text-status-info;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent;
+  }
+
+  .border-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .animate-flow {
+    animation: flow 1.5s ease-in-out infinite;
+  }
+
+  .animate-pulse-gold {
+    animation: pulse-gold 2s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+  }
+}
+
+@keyframes flow {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-gold {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 217, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(255, 217, 102, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

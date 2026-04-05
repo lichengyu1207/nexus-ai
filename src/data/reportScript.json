@@ -1,0 +1,13 @@
+[
+  { "time": 0, "type": "loading", "content": "数据采集中..." },
+  { "time": 2, "type": "title", "content": "深圳南山区房产分析报告" },
+  { "time": 4, "type": "subtitle", "content": "基于六部智能体协同分析" },
+  { "time": 6, "type": "section", "title": "📍 地段分析", "content": "南山区位于深圳西部，是深圳科技创新核心区域..." },
+  { "time": 8, "type": "chart", "chartType": "priceTrend", "title": "房价趋势" },
+  { "time": 10, "type": "section", "title": "🎓 学区分析", "content": "区域内有深圳湾学校、南山外国语学校等优质教育资源..." },
+  { "time": 12, "type": "chart", "chartType": "areaCompare", "title": "区域对比" },
+  { "time": 14, "type": "section", "title": "💰 价格分析", "content": "当前均价约12.5万/㎡，近三个月上涨5.2%..." },
+  { "time": 16, "type": "chart", "chartType": "facility", "title": "配套分布" },
+  { "time": 18, "type": "summary", "content": "综合评分：92分 | 推荐指数：★★★★★" },
+  { "time": 20, "type": "cta", "content": "查看完整报告" }
+]

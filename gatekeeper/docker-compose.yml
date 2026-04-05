@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  gatekeeper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gatekeeper
+    restart: always
+    ports:
+      - "8001:8001"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - SCAN_INTERVAL=10
+      - HEARTBEAT_TIMEOUT=30
+      - RESTART_COOLING=60
+      - RESTART_COMMAND_TEMPLATE=docker restart agent-{agent_id}
+      - AUDIT_LOG_TYPE=file
+      - AUDIT_LOG_PATH=/var/log/gatekeeper/restart.log
+      - API_HOST=0.0.0.0
+      - API_PORT=8001
+    volumes:
+      - ./logs:/var/log/gatekeeper
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - redis
+    networks:
+      - gatekeeper-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: gatekeeper-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - gatekeeper-net
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: gatekeeper-postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=gatekeeper
+      - POSTGRES_PASSWORD=gatekeeper123
+      - POSTGRES_DB=gatekeeper
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - gatekeeper-net
+
+networks:
+  gatekeeper-net:
+    driver: bridge
+
+volumes:
+  redis-data:
+  postgres-data:

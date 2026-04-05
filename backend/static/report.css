@@ -1,0 +1,259 @@
+/* 房都督报告样式 - 用于打印预览 */
+
+/* 基础样式 */
+body {
+    font-family: 'Inter', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+    line-height: 1.8;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: #fff;
+}
+
+/* 标题样式 */
+h1 {
+    color: #0A1A2F;
+    border-bottom: 3px solid #D4AF37;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+h2 {
+    color: #2C5530;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e5e7eb;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+h3 {
+    color: #0A1A2F;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+h4 {
+    color: #4b5563;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* 段落样式 */
+p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* 强调样式 */
+strong {
+    color: #D4AF37;
+    font-weight: 600;
+}
+
+/* 元信息样式 */
+p strong:first-child {
+    color: #0A1A2F;
+}
+
+/* 分隔线 */
+hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 30px 0;
+}
+
+/* 列表样式 */
+ul, ol {
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
+
+/* 表格样式 */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+th {
+    background-color: #0A1A2F;
+    color: #fff;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+td {
+    border: 1px solid #e5e7eb;
+    padding: 10px 15px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+tr:hover {
+    background-color: #f3f4f6;
+}
+
+/* 引用样式 */
+blockquote {
+    border-left: 4px solid #D4AF37;
+    padding-left: 20px;
+    margin: 20px 0;
+    color: #6b7280;
+    font-style: italic;
+}
+
+/* 代码样式 */
+code {
+    background-color: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 14px;
+}
+
+pre {
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+/* 链接样式 */
+a {
+    color: #D4AF37;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #B8962E;
+    text-decoration: underline;
+}
+
+/* 警告框样式 */
+p:has(strong:first-child) {
+    background-color: #fef3c7;
+    border-left: 4px solid #D4AF37;
+    padding: 15px;
+    border-radius: 0 8px 8px 0;
+}
+
+/* 评分样式 */
+p:contains("评分") {
+    background-color: #ecfdf5;
+    border-left: 4px solid #2C5530;
+    padding: 15px;
+    border-radius: 0 8px 8px 0;
+}
+
+/* 页脚样式 */
+p:last-child {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 12px;
+    margin-top: 40px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 20px;
+}
+
+/* 打印样式 */
+@media print {
+    body {
+        padding: 0;
+        font-size: 12pt;
+    }
+    
+    h1 {
+        font-size: 24pt;
+        page-break-after: avoid;
+    }
+    
+    h2 {
+        font-size: 18pt;
+        page-break-after: avoid;
+    }
+    
+    h3, h4 {
+        page-break-after: avoid;
+    }
+    
+    table {
+        page-break-inside: avoid;
+    }
+    
+    p, ul, ol {
+        orphans: 3;
+        widows: 3;
+    }
+    
+    a {
+        color: #0A1A2F;
+        text-decoration: none;
+    }
+    
+    .no-print {
+        display: none;
+    }
+}
+
+/* 屏幕预览样式 */
+@media screen {
+    body {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        border-radius: 8px;
+    }
+}
+
+/* 特殊区块样式 */
+h2:contains("风险提示") + p,
+h2:contains("风险提示") + ul {
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+    padding: 15px;
+    border-radius: 0 8px 8px 0;
+}
+
+h2:contains("投资建议") + p,
+h2:contains("投资建议") + ul {
+    background-color: #ecfdf5;
+    border-left: 4px solid #2C5530;
+    padding: 15px;
+    border-radius: 0 8px 8px 0;
+}
+
+/* 数据来源样式 */
+h2:contains("数据来源") + ul {
+    background-color: #f3f4f6;
+    padding: 15px 15px 15px 40px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #6b7280;
+}

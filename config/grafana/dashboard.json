@@ -1,0 +1,371 @@
+{
+  "dashboard": {
+    "title": "房都督 - 智能防御系统监控",
+    "tags": ["fangdu", "defense", "ai"],
+    "timezone": "browser",
+    "refresh": "30s",
+    "panels": [
+      {
+        "title": "防御成功率",
+        "type": "gauge",
+        "gridPos": {"x": 0, "y": 0, "w": 6, "h": 4},
+        "targets": [
+          {
+            "expr": "defense_success_total / defense_requests_total * 100",
+            "legendFormat": "成功率 %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "min": 0,
+            "max": 100,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "red", "value": 0},
+                {"color": "yellow", "value": 95},
+                {"color": "green", "value": 98}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "title": "攻击拦截统计",
+        "type": "stat",
+        "gridPos": {"x": 6, "y": 0, "w": 3, "h": 4},
+        "targets": [
+          {
+            "expr": "attack_blocked_total",
+            "legendFormat": "已拦截"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "color": {"mode": "fixed", "fixedColor": "green"}
+          }
+        }
+      },
+      {
+        "title": "漏检攻击",
+        "type": "stat",
+        "gridPos": {"x": 9, "y": 0, "w": 3, "h": 4},
+        "targets": [
+          {
+            "expr": "attack_missed_total",
+            "legendFormat": "漏检"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "color": {"mode": "fixed", "fixedColor": "red"}
+          }
+        }
+      },
+      {
+        "title": "误报率",
+        "type": "gauge",
+        "gridPos": {"x": 12, "y": 0, "w": 6, "h": 4},
+        "targets": [
+          {
+            "expr": "false_positive_total / defense_requests_total * 100",
+            "legendFormat": "误报率 %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "min": 0,
+            "max": 5,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "green", "value": 0},
+                {"color": "yellow", "value": 0.5},
+                {"color": "red", "value": 1}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "title": "防御决策延迟",
+        "type": "graph",
+        "gridPos": {"x": 0, "y": 4, "w": 12, "h": 6},
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, rate(defense_latency_seconds_bucket[5m])) * 1000",
+            "legendFormat": "P50"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(defense_latency_seconds_bucket[5m])) * 1000",
+            "legendFormat": "P95"
+          },
+          {
+            "expr": "histogram_quantile(0.99, rate(defense_latency_seconds_bucket[5m])) * 1000",
+            "legendFormat": "P99"
+          }
+        ],
+        "yaxes": [
+          {"format": "ms", "label": "延迟"},
+          {"format": "short"}
+        ],
+        "alert": {
+          "conditions": [
+            {
+              "evaluator": {"params": [5], "type": "gt"},
+              "operator": {"type": "and"},
+              "query": {"params": ["P99", "5m", "now"]},
+              "reducer": {"params": [], "type": "avg"},
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "alerting",
+          "frequency": "60s",
+          "handler": 1,
+          "name": "高延迟告警",
+          "noDataState": "no_data",
+          "notifications": []
+        }
+      },
+      {
+        "title": "模型推理延迟",
+        "type": "graph",
+        "gridPos": {"x": 12, "y": 4, "w": 12, "h": 6},
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, rate(model_inference_latency_bucket[5m])) * 1000",
+            "legendFormat": "P50"
+          },
+          {
+            "expr": "histogram_quantile(0.99, rate(model_inference_latency_bucket[5m])) * 1000",
+            "legendFormat": "P99"
+          }
+        ],
+        "yaxes": [
+          {"format": "ms", "label": "延迟"},
+          {"format": "short"}
+        ]
+      },
+      {
+        "title": "训练进度",
+        "type": "graph",
+        "gridPos": {"x": 0, "y": 10, "w": 8, "h": 6},
+        "targets": [
+          {
+            "expr": "rate(training_episodes_total[1h])",
+            "legendFormat": "训练轮次/小时"
+          },
+          {
+            "expr": "training_progress_episode",
+            "legendFormat": "当前轮次"
+          }
+        ],
+        "yaxes": [
+          {"format": "short", "label": "Episodes"},
+          {"format": "short"}
+        ]
+      },
+      {
+        "title": "模型版本",
+        "type": "stat",
+        "gridPos": {"x": 8, "y": 10, "w": 4, "h": 3},
+        "targets": [
+          {
+            "expr": "model_version",
+            "legendFormat": "版本"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "color": {"mode": "fixed", "fixedColor": "blue"}
+          }
+        }
+      },
+      {
+        "title": "模型更新次数",
+        "type": "stat",
+        "gridPos": {"x": 8, "y": 13, "w": 4, "h": 3},
+        "targets": [
+          {
+            "expr": "model_updates_total",
+            "legendFormat": "更新次数"
+          }
+        ]
+      },
+      {
+        "title": "TPR/FPR",
+        "type": "graph",
+        "gridPos": {"x": 12, "y": 10, "w": 12, "h": 6},
+        "targets": [
+          {
+            "expr": "defense_tpr * 100",
+            "legendFormat": "TPR %"
+          },
+          {
+            "expr": "defense_fpr * 100",
+            "legendFormat": "FPR %"
+          }
+        ],
+        "yaxes": [
+          {"format": "percent", "label": "Rate"},
+          {"format": "short"}
+        ]
+      },
+      {
+        "title": "CPU使用率",
+        "type": "graph",
+        "gridPos": {"x": 0, "y": 16, "w": 8, "h": 5},
+        "targets": [
+          {
+            "expr": "cpu_usage_percent",
+            "legendFormat": "CPU %"
+          }
+        ],
+        "yaxes": [
+          {"format": "percent", "label": "CPU", "max": 100},
+          {"format": "short"}
+        ],
+        "alert": {
+          "conditions": [
+            {
+              "evaluator": {"params": [80], "type": "gt"},
+              "query": {"params": ["CPU", "5m", "now"]}
+            }
+          ],
+          "name": "CPU高负载告警"
+        }
+      },
+      {
+        "title": "内存使用",
+        "type": "graph",
+        "gridPos": {"x": 8, "y": 16, "w": 8, "h": 5},
+        "targets": [
+          {
+            "expr": "memory_usage_bytes / 1024 / 1024 / 1024",
+            "legendFormat": "内存 GB"
+          }
+        ],
+        "yaxes": [
+          {"format": "GB", "label": "Memory"},
+          {"format": "short"}
+        ]
+      },
+      {
+        "title": "磁盘使用率",
+        "type": "gauge",
+        "gridPos": {"x": 16, "y": 16, "w": 8, "h": 5},
+        "targets": [
+          {
+            "expr": "disk_usage_percent",
+            "legendFormat": "磁盘 %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "min": 0,
+            "max": 100,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "green", "value": 0},
+                {"color": "yellow", "value": 70},
+                {"color": "red", "value": 85}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "title": "Celery Workers",
+        "type": "stat",
+        "gridPos": {"x": 0, "y": 21, "w": 4, "h": 3},
+        "targets": [
+          {
+            "expr": "active_workers",
+            "legendFormat": "活跃Worker"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "color": {"mode": "fixed", "fixedColor": "green"}
+          }
+        }
+      },
+      {
+        "title": "待处理任务",
+        "type": "stat",
+        "gridPos": {"x": 4, "y": 21, "w": 4, "h": 3},
+        "targets": [
+          {
+            "expr": "pending_tasks",
+            "legendFormat": "待处理"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "green", "value": 0},
+                {"color": "yellow", "value": 100},
+                {"color": "red", "value": 500}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "title": "攻击类型分布",
+        "type": "piechart",
+        "gridPos": {"x": 8, "y": 21, "w": 8, "h": 6},
+        "targets": [
+          {
+            "expr": "sum by (attack_type) (attack_requests_total)",
+            "legendFormat": "{{attack_type}}"
+          }
+        ]
+      },
+      {
+        "title": "请求量趋势",
+        "type": "graph",
+        "gridPos": {"x": 16, "y": 21, "w": 8, "h": 6},
+        "targets": [
+          {
+            "expr": "rate(defense_requests_total[5m])",
+            "legendFormat": "请求/秒"
+          },
+          {
+            "expr": "rate(attack_requests_total[5m])",
+            "legendFormat": "攻击/秒"
+          }
+        ],
+        "yaxes": [
+          {"format": "reqps", "label": "Requests"},
+          {"format": "short"}
+        ]
+      }
+    ],
+    "templating": {
+      "list": [
+        {
+          "name": "datasource",
+          "type": "datasource",
+          "query": "prometheus",
+          "current": {
+            "text": "Prometheus",
+            "value": "Prometheus"
+          }
+        }
+      ]
+    }
+  },
+  "overwrite": true
+}

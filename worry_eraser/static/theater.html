@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烦恼橡皮擦 - 智能体工作剧场</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .theater-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            margin-top: 30px;
+        }
+        
+        .theater-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .theater-header h2 {
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .theater-content {
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            gap: 0;
+            min-height: 600px;
+        }
+        
+        .data-flow-section {
+            background: #f8f9fa;
+            border-right: 1px solid #e0e0e0;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .data-flow-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .agent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .agent-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .agent-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .agent-item.active {
+            border-left: 3px solid #667eea;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
+        }
+        
+        .agent-icon {
+            font-size: 24px;
+        }
+        
+        .agent-info {
+            flex: 1;
+        }
+        
+        .agent-name {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .agent-status {
+            font-size: 12px;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .report-preview-section {
+            padding: 30px;
+            position: relative;
+            overflow-y: auto;
+        }
+        
+        .report-preview-section h3 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .report-content {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .report-title {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .report-section {
+            margin-bottom: 25px;
+        }
+        
+        .report-section h4 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .report-section p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+        
+        .chart-placeholder {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            height: 200px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .insights-list {
+            list-style: none;
+        }
+        
+        .insights-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .insights-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .insight-icon {
+            color: #667eea;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+        
+        .insight-content {
+            flex: 1;
+        }
+        
+        .insight-text {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .insight-confidence {
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .confidence-bar {
+            flex: 1;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+        
+        .confidence-text {
+            font-size: 12px;
+            color: #666;
+            min-width: 40px;
+        }
+        
+        .progress-section {
+            background: #f8f9fa;
+            border-left: 1px solid #e0e0e0;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .progress-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .progress-container {
+            margin-bottom: 25px;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .current-step {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .current-step h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .current-step p {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .realtime-insights {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .realtime-insights h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .insight-stream {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .stream-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .stream-item .time {
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 5px;
+        }
+        
+        .stream-item .content {
+            font-size: 13px;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .controls {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .btn-secondary:hover {
+            background: #f0f0f0;
+        }
+        
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 25px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .speed-control label {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .speed-control input[type="range"] {
+            width: 100px;
+        }
+        
+        .speed-value {
+            font-size: 13px;
+            color: #667eea;
+            font-weight: bold;
+            min-width: 30px;
+        }
+        
+        @media (max-width: 1024px) {
+            .theater-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-flow-section,
+            .progress-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎭 智能体工作剧场</h1>
+            <p>见证烦恼如何被智能体集群化解，报告如何从数据中"生长"出来</p>
+        </div>
+        
+        <div class="theater-container">
+            <div class="theater-header">
+                <h2>📊 报表生成剧场</h2>
+                <span id="statusBadge" style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 15px; font-size: 13px;">
+                    准备就绪
+                </span>
+            </div>
+            
+            <div class="theater-content">
+                <!-- 左侧：数据流可视化 -->
+                <div class="data-flow-section">
+                    <h3>🔄 数据汇聚</h3>
+                    <div class="agent-list" id="agentList">
+                        <div class="agent-item active">
+                            <span class="agent-icon">🎵</span>
+                            <div class="agent-info">
+                                <div class="agent-name">周瑜 - 情感分析师</div>
+                                <div class="agent-status">正在分析情绪...</div>
+                            </div>
+                        </div>
+                        <div class="agent-item">
+                            <span class="agent-icon">📜</span>
+                            <div class="agent-info">
+                                <div class="agent-name">陆逊 - 记忆挖掘师</div>
+                                <div class="agent-status">检索相似记忆...</div>
+                            </div>
+                        </div>
+                        <div class="agent-item">
+                            <span class="agent-icon">🧠</span>
+                            <div class="agent-info">
+                                <div class="agent-name">智能体集群</div>
+                                <div class="agent-status">协同处理中...</div>
+                            </div>
+                        </div>
+                        <div class="agent-item">
+                            <span class="agent-icon">📊</span>
+                            <div class="agent-info">
+                                <div class="agent-name">报告生成器</div>
+                                <div class="agent-status">渲染报告中...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 中央：报告预览区 -->
+                <div class="report-preview-section">
+                    <h3>📄 报告预览</h3>
+                    <div class="report-content" id="reportContent">
+                        <div class="report-title" id="reportTitle">烦恼分析报告</div>
+                        
+                        <div class="report-section">
+                            <h4>📝 摘要</h4>
+                            <p id="reportSummary">报告正在生成中，请稍候...</p>
+                        </div>
+                        
+                        <div class="report-section">
+                            <h4>📈 情绪趋势</h4>
+                            <div class="chart-placeholder" id="chartArea">
+                                📊 图表渲染中...
+                            </div>
+                        </div>
+                        
+                        <div class="report-section">
+                            <h4>💡 智能洞察</h4>
+                            <ul class="insights-list" id="insightsList">
+                                <li>
+                                    <span class="insight-icon">✨</span>
+                                    <div class="insight-content">
+                                        <div class="insight-text">正在分析您的烦恼模式...</div>
+                                        <div class="insight-confidence">
+                                            <div class="confidence-bar">
+                                                <div class="confidence-fill" style="width: 0%"></div>
+                                            </div>
+                                            <span class="confidence-text">0%</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="report-section">
+                            <h4>🎯 建议</h4>
+                            <p id="suggestions">建议正在生成中...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧：进度与洞察 -->
+                <div class="progress-section">
+                    <h3>⚡ 生成进度</h3>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>整体进度</span>
+                            <span id="progressPercent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="current-step" id="currentStep">
+                        <h4>当前步骤</h4>
+                        <p>准备开始生成报告...</p>
+                    </div>
+                    
+                    <div class="realtime-insights">
+                        <h4>🔔 实时洞察</h4>
+                        <div class="insight-stream" id="insightStream">
+                            <!-- 实时洞察会动态添加到这里 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 控制栏 -->
+            <div class="controls">
+                <button class="btn btn-primary" onclick="startGeneration()">
+                    ▶️ 开始生成
+                </button>
+                <button class="btn btn-secondary" onclick="replayGeneration()">
+                    🔄 重播
+                </button>
+                <button class="btn btn-secondary" onclick="skipToEnd()">
+                    ⏭️ 跳过
+                </button>
+                <div class="speed-control">
+                    <label>速度:</label>
+                    <input type="range" id="speedSlider" min="0.5" max="2" step="0.5" value="1" onchange="updateSpeed()">
+                    <span class="speed-value" id="speedValue">1x</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let generationInterval = null;
+        let currentProgress = 0;
+        let speed = 1;
+        
+        const steps = [
+            { progress: 10, step: '正在采集用户烦恼数据...', agent: 0 },
+            { progress: 25, step: '周瑜正在分析情绪特征...', agent: 0 },
+            { progress: 40, step: '陆逊正在检索相似记忆...', agent: 1 },
+            { progress: 55, step: '智能体集群协同处理中...', agent: 2 },
+            { progress: 70, step: '正在生成情绪趋势图表...', agent: 2 },
+            { progress: 85, step: '正在撰写智能洞察...', agent: 3 },
+            { progress: 95, step: '报告最终渲染中...', agent: 3 },
+            { progress: 100, step: '报告生成完成！', agent: 3 }
+        ];
+        
+        const insights = [
+            { time: '00:01', content: '检测到工作压力相关的烦恼模式' },
+            { time: '00:02', content: '发现3条相似记忆记录' },
+            { time: '00:03', content: '情绪波动较大，但整体向稳' },
+            { time: '00:04', content: '建议：尝试深呼吸缓解压力' },
+            { time: '00:05', content: '报告生成完成，共5个章节' }
+        ];
+        
+        function startGeneration() {
+            if (generationInterval) return;
+            
+            currentProgress = 0;
+            updateProgress(0);
+            clearInsights();
+            
+            generationInterval = setInterval(() => {
+                currentProgress += 2 * speed;
+                
+                if (currentProgress >= 100) {
+                    currentProgress = 100;
+                    clearInterval(generationInterval);
+                    generationInterval = null;
+                    showComplete();
+                }
+                
+                updateProgress(currentProgress);
+                updateStep(currentProgress);
+                updateAgents(currentProgress);
+                
+                if (currentProgress % 20 === 0 && insights.length > 0) {
+                    addInsight(insights.shift());
+                }
+                
+            }, 100);
+        }
+        
+        function updateProgress(progress) {
+            document.getElementById('progressPercent').textContent = progress + '%';
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+        
+        function updateStep(progress) {
+            const step = steps.find(s => s.progress >= progress) || steps[steps.length - 1];
+            document.getElementById('currentStep').innerHTML = `
+                <h4>当前步骤</h4>
+                <p>${step.step}</p>
+            `;
+        }
+        
+        function updateAgents(progress) {
+            const agents = document.querySelectorAll('.agent-item');
+            const step = steps.find(s => s.progress >= progress) || steps[steps.length - 1];
+            
+            agents.forEach((agent, index) => {
+                if (index === step.agent) {
+                    agent.classList.add('active');
+                } else {
+                    agent.classList.remove('active');
+                }
+            });
+        }
+        
+        function addInsight(insight) {
+            const stream = document.getElementById('insightStream');
+            const item = document.createElement('div');
+            item.className = 'stream-item';
+            item.innerHTML = `
+                <div class="time">${insight.time}</div>
+                <div class="content">${insight.content}</div>
+            `;
+            stream.insertBefore(item, stream.firstChild);
+        }
+        
+        function clearInsights() {
+            document.getElementById('insightStream').innerHTML = '';
+        }
+        
+        function showComplete() {
+            document.getElementById('statusBadge').textContent = '已完成';
+            document.getElementById('statusBadge').style.background = '#4CAF50';
+            
+            document.getElementById('reportSummary').textContent = 
+                '您最近提到了工作压力相关的烦恼，情绪波动较大但整体向稳。';
+            
+            document.getElementById('chartArea').innerHTML = 
+                '<div style="display: flex; justify-content: space-around; align-items: flex-end; height: 100%; padding: 20px;">' +
+                '<div style="width: 30px; height: 60%; background: #667eea; border-radius: 5px;"></div>' +
+                '<div style="width: 30px; height: 80%; background: #764ba2; border-radius: 5px;"></div>' +
+                '<div style="width: 30px; height: 50%; background: #667eea; border-radius: 5px;"></div>' +
+                '<div style="width: 30px; height: 90%; background: #764ba2; border-radius: 5px;"></div>' +
+                '<div style="width: 30px; height: 70%; background: #667eea; border-radius: 5px;"></div>' +
+                '</div>';
+            
+            document.getElementById('insightsList').innerHTML = `
+                <li>
+                    <span class="insight-icon">✨</span>
+                    <div class="insight-content">
+                        <div class="insight-text">检测到工作压力相关的烦恼模式</div>
+                        <div class="insight-confidence">
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: 85%"></div>
+                            </div>
+                            <span class="confidence-text">85%</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <span class="insight-icon">💭</span>
+                    <div class="insight-content">
+                        <div class="insight-text">发现3条相似记忆记录</div>
+                        <div class="insight-confidence">
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: 92%"></div>
+                            </div>
+                            <span class="confidence-text">92%</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <span class="insight-icon">🎯</span>
+                    <div class="insight-content">
+                        <div class="insight-text">情绪波动较大，但整体向稳</div>
+                        <div class="insight-confidence">
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: 78%"></div>
+                            </div>
+                            <span class="confidence-text">78%</span>
+                        </div>
+                    </div>
+                </li>
+            `;
+            
+            document.getElementById('suggestions').innerHTML = `
+                • 尝试深呼吸5分钟，缓解工作压力<br>
+                • 与同事或上级沟通，寻求支持<br>
+                • 设定小目标，逐步完成工作任务
+            `;
+        }
+        
+        function replayGeneration() {
+            if (generationInterval) {
+                clearInterval(generationInterval);
+                generationInterval = null;
+            }
+            
+            document.getElementById('statusBadge').textContent = '准备就绪';
+            document.getElementById('statusBadge').style.background = 'rgba(255,255,255,0.2)';
+            
+            startGeneration();
+        }
+        
+        function skipToEnd() {
+            if (generationInterval) {
+                clearInterval(generationInterval);
+                generationInterval = null;
+            }
+            
+            currentProgress = 100;
+            updateProgress(100);
+            showComplete();
+        }
+        
+        function updateSpeed() {
+            speed = parseFloat(document.getElementById('speedSlider').value);
+            document.getElementById('speedValue').textContent = speed + 'x';
+        }
+    </script>
+</body>
+</html>

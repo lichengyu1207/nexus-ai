@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房都督 - 住房决策一键体验</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        
+        .header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .demo-trigger {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        
+        .demo-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+        }
+        
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.4);
+        }
+        
+        .demo-btn .badge {
+            padding: 4px 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        
+        .demo-btn .pulse {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 12px;
+            height: 12px;
+        }
+        
+        .demo-btn .pulse span {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            width: 95%;
+            max-width: 1200px;
+            height: 90vh;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 24px;
+            border: 1px solid #334155;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+        
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .modal-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .modal-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .modal-title h2 {
+            font-size: 1.25rem;
+            color: white;
+        }
+        
+        .modal-title p {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+        
+        .modal-controls {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .control-btn {
+            padding: 8px 16px;
+            background: #334155;
+            color: #e2e8f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background 0.2s;
+        }
+        
+        .control-btn:hover {
+            background: #475569;
+        }
+        
+        .control-btn.primary {
+            background: #22c55e;
+        }
+        
+        .control-btn.primary:hover {
+            background: #16a34a;
+        }
+        
+        .control-btn.close {
+            background: transparent;
+            padding: 8px;
+        }
+        
+        .modal-body {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #334155;
+        }
+        
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+        
+        .message.agent {
+            align-self: flex-start;
+            background: #334155;
+            color: #e2e8f0;
+        }
+        
+        .message .agent-name {
+            font-size: 0.75rem;
+            color: #f59e0b;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        
+        .message .content {
+            white-space: pre-wrap;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: #334155;
+            border-radius: 16px;
+            align-self: flex-start;
+        }
+        
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        
+        .progress-bar {
+            padding: 12px 20px;
+            background: #1e293b;
+            border-top: 1px solid #334155;
+        }
+        
+        .progress-bar .label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar .track {
+            height: 6px;
+            background: #334155;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-bar .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+            border-radius: 3px;
+            transition: width 0.5s;
+        }
+        
+        .sidebar {
+            width: 320px;
+            padding: 20px;
+            background: rgba(30, 41, 59, 0.5);
+        }
+        
+        .sidebar h3 {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            margin-bottom: 16px;
+        }
+        
+        .agent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .agent-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(51, 65, 85, 0.5);
+            border: 1px solid #475569;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+        
+        .agent-item.working {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: rgba(245, 158, 11, 0.5);
+        }
+        
+        .agent-item.completed {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+        
+        .agent-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+        
+        .agent-item.idle .agent-icon {
+            background: #475569;
+            color: #94a3b8;
+        }
+        
+        .agent-item.working .agent-icon {
+            background: #f59e0b;
+            color: white;
+            animation: pulse 1s infinite;
+        }
+        
+        .agent-item.completed .agent-icon {
+            background: #22c55e;
+            color: white;
+        }
+        
+        .agent-info {
+            flex: 1;
+        }
+        
+        .agent-info .name {
+            font-size: 0.875rem;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .agent-info .desc {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+        
+        .agent-status {
+            font-size: 1.25rem;
+        }
+        
+        .report-preview {
+            margin-top: 20px;
+            padding: 16px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1));
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            display: none;
+        }
+        
+        .report-preview.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .report-preview h4 {
+            font-size: 0.875rem;
+            color: #f59e0b;
+            margin-bottom: 12px;
+        }
+        
+        .report-preview ul {
+            list-style: none;
+            font-size: 0.8rem;
+            color: #e2e8f0;
+        }
+        
+        .report-preview li {
+            margin-bottom: 4px;
+        }
+        
+        .report-preview button {
+            width: 100%;
+            margin-top: 12px;
+            padding: 10px;
+            background: #f59e0b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .report-preview button:hover {
+            background: #d97706;
+        }
+        
+        .complete-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(15, 23, 42, 1), transparent);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .complete-overlay.show {
+            display: flex;
+        }
+        
+        .complete-overlay p {
+            color: #e2e8f0;
+        }
+        
+        .complete-overlay .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .complete-overlay .btn.primary {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+        }
+        
+        .complete-overlay .btn.secondary {
+            background: #475569;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 住房决策一键体验</h1>
+            <p>体验周瑜如何通过六部智能体协同，帮您完成一次完整的住房决策分析</p>
+        </div>
+        
+        <div class="demo-trigger">
+            <button class="demo-btn" onclick="openDemo()">
+                <span>🏠</span>
+                <span>体验周瑜帮你选房</span>
+                <span class="badge">一键体验</span>
+                <span class="pulse"><span></span></span>
+            </button>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <div class="icon">🏠</div>
+                    <div>
+                        <h2>住房决策一键体验</h2>
+                        <p>体验周瑜如何帮您分析房产</p>
+                    </div>
+                </div>
+                <div class="modal-controls">
+                    <button class="control-btn" id="pauseBtn" onclick="togglePause()">暂停</button>
+                    <button class="control-btn" onclick="restart()">重播</button>
+                    <button class="control-btn" onclick="skip()">跳过</button>
+                    <button class="control-btn close" onclick="closeDemo()">✕</button>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="chat-area">
+                    <div class="messages" id="messages"></div>
+                    <div class="progress-bar">
+                        <div class="label">
+                            <span>进度</span>
+                            <span id="progressText">0/6</span>
+                        </div>
+                        <div class="track">
+                            <div class="fill" id="progressFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <h3>六部智能体协同</h3>
+                    <div class="agent-list" id="agentList"></div>
+                    <div class="report-preview" id="reportPreview">
+                        <h4>📊 分析报告已生成</h4>
+                        <ul>
+                            <li>• 推荐学区：南山实验</li>
+                            <li>• 预算匹配度：95%</li>
+                            <li>• 风险等级：可控</li>
+                        </ul>
+                        <button>查看完整报告</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="complete-overlay" id="completeOverlay">
+                <p>演示完成！如果您有真实需求，欢迎立即咨询。</p>
+                <button class="btn primary">立即咨询</button>
+                <button class="btn secondary">注册账号</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const AGENTS = [
+            { id: 'zhongshu', name: '中书省', desc: '决策中枢' },
+            { id: 'menshang', name: '门下省', desc: '审核监督' },
+            { id: 'gongbu', name: '工部', desc: '估值分析' },
+            { id: 'libu', name: '礼部', desc: '对话服务' },
+            { id: 'bingbu', name: '兵部', desc: '数据采集' },
+            { id: 'xingbu', name: '刑部', desc: '风险控制' },
+        ];
+        
+        const DEMO_STEPS = [
+            {
+                agent: 'zhongshu',
+                agentName: '中书省',
+                message: '周瑜：收到您的需求。让我来分析一下——深圳南山区，学区房，100平米，预算1000万。这是一个典型的学区房置业决策，我将协调各部为您进行全面分析。',
+                delay: 1500
+            },
+            {
+                agent: 'bingbu',
+                agentName: '兵部',
+                message: '【兵部】正在采集南山区学区房数据...\n✓ 已获取南山区12个学区信息\n✓ 已采集近3个月成交数据\n✓ 已获取学区划分及对口学校信息',
+                delay: 2000
+            },
+            {
+                agent: 'gongbu',
+                agentName: '工部',
+                message: '【工部】正在进行估值分析...\n\n📊 南山区学区房市场分析：\n• 均价区间：9-15万/㎡\n• 100㎡预算匹配度：中等\n• 推荐学区：南二外、南山实验、育才\n\n💰 估值结果：\n• 南二外学区：约1100-1300万\n• 南山实验学区：约950-1150万\n• 育才学区：约850-1000万',
+                delay: 3000
+            },
+            {
+                agent: 'xingbu',
+                agentName: '刑部',
+                message: '【刑部】风险评估报告：\n\n⚠️ 注意事项：\n• 深圳限购政策：需深圳户口或连续5年社保\n• 学区政策变动风险：中等\n• 价格波动风险：需关注政策调控\n\n✅ 风险等级：可控',
+                delay: 2000
+            },
+            {
+                agent: 'menshang',
+                agentName: '门下省',
+                message: '【门下省】审核通过\n\n经核查，以上分析数据来源可靠，估值方法科学，风险提示充分。建议重点关注南山实验学区的房源，性价比较高。',
+                delay: 1500
+            },
+            {
+                agent: 'libu',
+                agentName: '礼部',
+                message: '周瑜：综合各部分析，我为您整理了以下建议：\n\n🏠 推荐方案：\n1. 首选南山实验学区，预算匹配度高\n2. 关注育才学区作为备选\n3. 建议实地考察3-5套房源后再做决定\n\n📋 下一步行动：\n• 准备购房资格证明\n• 关注近期新上房源\n• 联系中介实地看房\n\n如需更详细的分析报告，我可以为您生成专属报告。',
+                delay: 2500
+            }
+        ];
+        
+        const USER_QUERY = '我想在深圳南山区买一套100平米左右的学区房，预算1000万，帮我分析一下。';
+        
+        let currentStep = -1;
+        let isPaused = false;
+        let isComplete = false;
+        let agentStatuses = {};
+        
+        function openDemo() {
+            document.getElementById('modalOverlay').classList.add('active');
+            initAgents();
+            startDemo();
+        }
+        
+        function closeDemo() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+        
+        function initAgents() {
+            const agentList = document.getElementById('agentList');
+            agentList.innerHTML = '';
+            agentStatuses = {};
+            
+            AGENTS.forEach(agent => {
+                agentStatuses[agent.id] = 'idle';
+                const item = document.createElement('div');
+                item.className = 'agent-item idle';
+                item.id = `agent-${agent.id}`;
+                item.innerHTML = `
+                    <div class="agent-icon">${agent.name.charAt(0)}</div>
+                    <div class="agent-info">
+                        <div class="name">${agent.name}</div>
+                        <div class="desc">${agent.desc}</div>
+                    </div>
+                    <div class="agent-status">○</div>
+                `;
+                agentList.appendChild(item);
+            });
+        }
+        
+        function updateAgentStatus(agentId, status) {
+            agentStatuses[agentId] = status;
+            const item = document.getElementById(`agent-${agentId}`);
+            if (item) {
+                item.className = `agent-item ${status}`;
+                const statusIcon = item.querySelector('.agent-status');
+                if (status === 'working') {
+                    statusIcon.textContent = '⚡';
+                } else if (status === 'completed') {
+                    statusIcon.textContent = '✅';
+                } else {
+                    statusIcon.textContent = '○';
+                }
+            }
+        }
+        
+        function addMessage(sender, content, agentName = null) {
+            const messages = document.getElementById('messages');
+            const msg = document.createElement('div');
+            msg.className = `message ${sender}`;
+            
+            let html = '';
+            if (agentName) {
+                html += `<div class="agent-name">${agentName}</div>`;
+            }
+            html += `<div class="content">${content}</div>`;
+            msg.innerHTML = html;
+            
+            messages.appendChild(msg);
+            messages.scrollTop = messages.scrollHeight;
+        }
+        
+        function showTyping() {
+            const messages = document.getElementById('messages');
+            const typing = document.createElement('div');
+            typing.className = 'typing-indicator';
+            typing.id = 'typing';
+            typing.innerHTML = '<span></span><span></span><span></span>';
+            messages.appendChild(typing);
+            messages.scrollTop = messages.scrollHeight;
+        }
+        
+        function hideTyping() {
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+        }
+        
+        function updateProgress(step) {
+            const total = DEMO_STEPS.length;
+            const percent = ((step + 1) / total) * 100;
+            document.getElementById('progressFill').style.width = `${percent}%`;
+            document.getElementById('progressText').textContent = `${step + 1}/${total}`;
+        }
+        
+        async function startDemo() {
+            currentStep = -1;
+            isPaused = false;
+            isComplete = false;
+            document.getElementById('messages').innerHTML = '';
+            document.getElementById('reportPreview').classList.remove('show');
+            document.getElementById('completeOverlay').classList.remove('show');
+            document.getElementById('pauseBtn').textContent = '暂停';
+            document.getElementById('pauseBtn').classList.remove('primary');
+            
+            initAgents();
+            
+            await sleep(500);
+            addMessage('user', USER_QUERY);
+            await sleep(800);
+            
+            for (let i = 0; i < DEMO_STEPS.length; i++) {
+                if (isPaused) break;
+                
+                const step = DEMO_STEPS[i];
+                currentStep = i;
+                
+                updateAgentStatus(step.agent, 'working');
+                showTyping();
+                
+                await sleep(step.delay);
+                
+                if (isPaused) {
+                    hideTyping();
+                    break;
+                }
+                
+                hideTyping();
+                addMessage('agent', step.message, step.agentName);
+                updateAgentStatus(step.agent, 'completed');
+                updateProgress(i);
+                
+                await sleep(500);
+            }
+            
+            if (!isPaused) {
+                isComplete = true;
+                await sleep(1000);
+                document.getElementById('reportPreview').classList.add('show');
+                document.getElementById('completeOverlay').classList.add('show');
+            }
+        }
+        
+        function togglePause() {
+            const btn = document.getElementById('pauseBtn');
+            if (isPaused) {
+                isPaused = false;
+                btn.textContent = '暂停';
+                btn.classList.remove('primary');
+                if (!isComplete) {
+                    continueDemo();
+                }
+            } else {
+                isPaused = true;
+                btn.textContent = '继续';
+                btn.classList.add('primary');
+            }
+        }
+        
+        async function continueDemo() {
+            for (let i = currentStep + 1; i < DEMO_STEPS.length; i++) {
+                if (isPaused) break;
+                
+                const step = DEMO_STEPS[i];
+                currentStep = i;
+                
+                updateAgentStatus(step.agent, 'working');
+                showTyping();
+                
+                await sleep(step.delay);
+                
+                if (isPaused) {
+                    hideTyping();
+                    break;
+                }
+                
+                hideTyping();
+                addMessage('agent', step.message, step.agentName);
+                updateAgentStatus(step.agent, 'completed');
+                updateProgress(i);
+                
+                await sleep(500);
+            }
+            
+            if (!isPaused) {
+                isComplete = true;
+                await sleep(1000);
+                document.getElementById('reportPreview').classList.add('show');
+                document.getElementById('completeOverlay').classList.add('show');
+            }
+        }
+        
+        function restart() {
+            isPaused = false;
+            startDemo();
+        }
+        
+        function skip() {
+            isComplete = true;
+            isPaused = true;
+            
+            AGENTS.forEach(agent => updateAgentStatus(agent.id, 'completed'));
+            
+            document.getElementById('messages').innerHTML = '';
+            addMessage('user', USER_QUERY);
+            DEMO_STEPS.forEach(step => {
+                addMessage('agent', step.message, step.agentName);
+            });
+            
+            updateProgress(DEMO_STEPS.length - 1);
+            document.getElementById('reportPreview').classList.add('show');
+            document.getElementById('completeOverlay').classList.add('show');
+        }
+        
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    </script>
+</body>
+</html>

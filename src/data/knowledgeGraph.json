@@ -1,0 +1,118 @@
+{
+  "nodes": [
+    {
+      "id": "node_shenzhen",
+      "label": "深圳房产",
+      "type": "userMemory",
+      "importance": 0.9,
+      "summary": "深圳南山区房产投资分析",
+      "position": { "x": 200, "y": 150 }
+    },
+    {
+      "id": "node_beijing",
+      "label": "北京房产",
+      "type": "userMemory",
+      "importance": 0.7,
+      "summary": "北京朝阳区新盘推荐",
+      "position": { "x": 350, "y": 100 }
+    },
+    {
+      "id": "node_education",
+      "label": "教育资源",
+      "type": "userMemory",
+      "importance": 0.85,
+      "summary": "学区房偏好与教育需求",
+      "position": { "x": 150, "y": 250 }
+    },
+    {
+      "id": "node_market",
+      "label": "市场行情",
+      "type": "externalKnowledge",
+      "importance": 0.75,
+      "summary": "上海房价稳中有升",
+      "position": { "x": 400, "y": 200 }
+    },
+    {
+      "id": "node_security",
+      "label": "安全事件",
+      "type": "businessData",
+      "importance": 0.95,
+      "summary": "异常IP访问检测",
+      "position": { "x": 300, "y": 300 }
+    },
+    {
+      "id": "node_credit",
+      "label": "信用评级",
+      "type": "businessData",
+      "importance": 0.8,
+      "summary": "用户信用优秀",
+      "position": { "x": 450, "y": 350 }
+    },
+    {
+      "id": "node_metro",
+      "label": "地铁规划",
+      "type": "externalKnowledge",
+      "importance": 0.6,
+      "summary": "城市地铁规划信息",
+      "position": { "x": 100, "y": 180 }
+    },
+    {
+      "id": "node_policy",
+      "label": "政策法规",
+      "type": "externalKnowledge",
+      "importance": 0.65,
+      "summary": "房产相关政策",
+      "position": { "x": 500, "y": 150 }
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_shenzhen",
+      "target": "node_education",
+      "strength": 0.8,
+      "label": "学区关联"
+    },
+    {
+      "source": "node_shenzhen",
+      "target": "node_metro",
+      "strength": 0.7,
+      "label": "交通关联"
+    },
+    {
+      "source": "node_beijing",
+      "target": "node_education",
+      "strength": 0.6,
+      "label": "学区关联"
+    },
+    {
+      "source": "node_market",
+      "target": "node_policy",
+      "strength": 0.9,
+      "label": "政策影响"
+    },
+    {
+      "source": "node_credit",
+      "target": "node_shenzhen",
+      "strength": 0.5,
+      "label": "贷款资质"
+    },
+    {
+      "source": "node_security",
+      "target": "node_credit",
+      "strength": 0.4,
+      "label": "安全验证"
+    },
+    {
+      "source": "node_education",
+      "target": "node_metro",
+      "strength": 0.85,
+      "label": "交通便利"
+    },
+    {
+      "source": "node_market",
+      "target": "node_shenzhen",
+      "strength": 0.7,
+      "label": "市场参考"
+    }
+  ]
+}

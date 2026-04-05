@@ -1,0 +1,87 @@
+{
+  "agents": [
+    {
+      "id": "li",
+      "name": "吏部",
+      "fullName": "吏部·人力资源智能体",
+      "role": "位置地段分析",
+      "description": "负责房产位置、地段价值的深度分析，评估交通、配套、发展潜力",
+      "color": "#6366f1",
+      "icon": "📍",
+      "animationPath": "/animations/li-agent.json",
+      "skills": ["地段评估", "交通分析", "配套调研", "发展预测"]
+    },
+    {
+      "id": "hu",
+      "name": "户部",
+      "fullName": "户部·财务分析智能体",
+      "role": "价格预算分析",
+      "description": "负责房产价格、预算规划、投资回报分析",
+      "color": "#10b981",
+      "icon": "💰",
+      "animationPath": "/animations/hu-agent.json",
+      "skills": ["价格评估", "预算规划", "投资分析", "贷款计算"]
+    },
+    {
+      "id": "li_guan",
+      "name": "礼部",
+      "fullName": "礼部·教育文化智能体",
+      "role": "学区教育分析",
+      "description": "负责学区划分、教育资源、文化配套分析",
+      "color": "#3b82f6",
+      "icon": "🎓",
+      "animationPath": "/animations/li-guan-agent.json",
+      "skills": ["学区查询", "教育资源", "文化配套", "升学分析"]
+    },
+    {
+      "id": "bing",
+      "name": "兵部",
+      "fullName": "兵部·出行交通智能体",
+      "role": "交通出行分析",
+      "description": "负责交通网络、出行便利性、通勤时间分析",
+      "color": "#f59e0b",
+      "icon": "🚇",
+      "animationPath": "/animations/bing-agent.json",
+      "skills": ["地铁分析", "公交网络", "通勤计算", "出行规划"]
+    },
+    {
+      "id": "gong",
+      "name": "工部",
+      "fullName": "工部·建筑品质智能体",
+      "role": "开发商品质分析",
+      "description": "负责开发商资质、建筑品质、物业服务分析",
+      "color": "#ef4444",
+      "icon": "🏗️",
+      "animationPath": "/animations/gong-agent.json",
+      "skills": ["开发商评估", "建筑品质", "物业服务", "装修标准"]
+    },
+    {
+      "id": "xing",
+      "name": "刑部",
+      "fullName": "刑部·合规风控智能体",
+      "role": "政策法规分析",
+      "description": "负责房产政策、法律法规、风险控制分析",
+      "color": "#8b5cf6",
+      "icon": "⚖️",
+      "animationPath": "/animations/xing-agent.json",
+      "skills": ["政策解读", "法规分析", "风险评估", "合规审查"]
+    }
+  ],
+  "presets": [
+    {
+      "id": "shenzhen_nanshan",
+      "text": "帮我分析深圳南山区学区房",
+      "icon": "🏫"
+    },
+    {
+      "id": "shanghai_pudong",
+      "text": "上海浦东投资分析",
+      "icon": "📈"
+    },
+    {
+      "id": "beijing_chaoyang",
+      "text": "北京朝阳租房指南",
+      "icon": "🏠"
+    }
+  ]
+}

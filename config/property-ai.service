@@ -1,0 +1,48 @@
+[Unit]
+Description=Property AI - Intelligent Property Analysis Platform
+Documentation=https://github.com/your-org/property-ai
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/property-ai
+Environment="PATH=/opt/property-ai/venv/bin:/usr/local/bin:/usr/bin:/bin"
+EnvironmentFile=/opt/property-ai/.env
+
+# 启动命令
+ExecStart=/opt/property-ai/venv/bin/uvicorn backend.main:app \
+    --host 127.0.0.1 \
+    --port 8000 \
+    --workers 4 \
+    --log-level info \
+    --access-log
+
+# 重启策略
+Restart=always
+RestartSec=10
+
+# 资源限制
+LimitNOFILE=65535
+LimitNPROC=4096
+
+# 安全设置
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/property-ai/data /opt/property-ai/logs
+
+# 日志
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=property-ai
+
+# 优雅关闭
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

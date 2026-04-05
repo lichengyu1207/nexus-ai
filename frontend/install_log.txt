@@ -1,0 +1,324 @@
+﻿node.exe : npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_
+modules/@babel/types'
+所在位置 行:1 字符: 1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm warn tar EN...s/@babel/types':String) [], Remote 
+   Exception
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/@ba
+bel/runtime'
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/@ty
+pescript-eslint/scope-manager'
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/@ty
+pescript-eslint/eslint-plugin'
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/suc
+rase'
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/vic
+tory-vendor'
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/@ba
+bel/types'
+npm warn tarball tarball data for @babel/types@https://registry.npmmirror.com/@babel/types/-/types
+-7.29.0.tgz (sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd
+14dd3B0A==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/@ty
+pescript-eslint/scope-manager'
+npm warn tarball tarball data for @typescript-eslint/scope-manager@https://registry.npmmirror.com/
+@typescript-eslint/scope-manager/-/scope-manager-6.21.0.tgz (sha512-OwLUIWZJry80O99zvqXVEioyniJMa+
+d2GrqpUTqi5/v5D5rOrppJVBPa0yKCblcigC0/aYAzxxqQ1B+DS2RYsg==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/@ty
+pescript-eslint/eslint-plugin'
+npm warn tarball tarball data for @typescript-eslint/eslint-plugin@https://registry.npmmirror.com/
+@typescript-eslint/eslint-plugin/-/eslint-plugin-6.21.0.tgz (sha512-oy9+hTPCUFpngkEZUSzbf9MxI65wbK
+FoQYsgPdILTfbUldp5ovUuphZVe4i30emU9M/kP+T64Di0mxl7dSw3MA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/suc
+rase'
+npm warn tarball tarball data for sucrase@https://registry.npmmirror.com/sucrase/-/sucrase-3.35.1.
+tgz (sha512-DhuTmvZWux4H1UOnWMB3sk0sbaCVOoQZjv8u1rDoTV0HTdGem9hkAZtl4JZy8P2z4Bg0nT+YMeOFyVr4zcG5Tw
+==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/vic
+tory-vendor'
+npm warn tarball tarball data for victory-vendor@https://registry.npmmirror.com/victory-vendor/-/v
+ictory-vendor-36.9.2.tgz (sha512-PnpQQMuxlwYdocC8fIJqVXvkeViHYzotI+NJrCuav0ZYFoq912ZHBk3mCeuj+5/Vp
+odOjPe1z0Fk2ihgzlXqjQ==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/whi
+ch'
+npm warn tarball tarball data for which@2.0.2 (sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbX
+grMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/rol
+lup'
+npm warn tarball tarball data for rollup@4.59.0 (sha512-2oMpl67a3zCH9H79LeMcbDhXW/UmWG/y2zuqnF2jQq
+5uq9TbM9TVyXvA4+t+ne2IIkBdrLpAaRQAvo7YI/Yyeg==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/rim
+raf'
+npm warn tarball tarball data for rimraf@3.0.2 (sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0
+L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/aut
+oprefixer'
+npm warn tarball tarball data for autoprefixer@10.4.27 (sha512-NP9APE+tO+LuJGn7/9+cohklunJsXWiaWEf
+V3si4Gi/XHDwVNgkwr1J3RQYFIvPy76GmJ9/bW8vyoU1LcxwKHA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/jso
+n5'
+npm warn tarball tarball data for json5@2.2.3 (sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t
+3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/res
+olve'
+npm warn tarball tarball data for resolve@1.22.11 (sha512-RfqAvLnMl313r7c9oclB1HhUEAezcpLjz95wFH4L
+Vuhk9JF/r22qmVP9AMmOU4vMX7Q8pN8jwNg/CSpdFnMjTQ==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/upd
+ate-browserslist-db'
+npm warn tarball tarball data for update-browserslist-db@1.2.3 (sha512-Js0m9cx+qOgDxo0eMiFGEueWztz
++d4+M3rGlmKPT+T4IS/jP4ylw3Nwpu6cpTTP8R1MAC1kF4VbdLt3ARf209w==) seems to be corrupted. Trying again
+.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/aco
+rn'
+npm warn tarball tarball data for acorn@8.16.0 (sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJl
+m/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/js-
+yaml'
+npm warn tarball tarball data for js-yaml@4.1.1 (sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk
+2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/@ba
+bel/parser'
+npm warn tarball tarball data for @babel/parser@7.29.0 (sha512-IyDgFV5GeDUVX4YdF/3CPULtVGSXXMLh1xV
+IgdCgxApktqnQV0r7/8Nqthg+8YLGaAtdyIlo2qIdZrbCv4+7ww==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/css
+esc'
+npm warn tarball tarball data for cssesc@3.0.0 (sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFh
+yDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/@ba
+bel/runtime'
+npm warn tarball tarball data for @babel/runtime@https://registry.npmmirror.com/@babel/runtime/-/r
+untime-7.28.6.tgz (sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrs
+p9fCl0HoPRVTdA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/esb
+uild'
+npm warn tarball tarball data for esbuild@0.21.5 (sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/Ep
+khB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/vit
+e'
+npm warn tarball tarball data for vite@5.4.21 (sha512-o5a9xKjbtuhY6Bi5S3+HvbRERmouabWbyUcpXXUA1u+G
+NUKoROi9byOJ8M0nHbHYHkYICiMlqxkg1KkYmm25Sw==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/@ba
+bel/helper-compilation-targets/node_modules/semver'
+npm warn tarball tarball data for semver@6.3.1 (sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CW
+oSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/nan
+oid'
+npm warn tarball tarball data for nanoid@3.3.11 (sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9J
+Aro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/sem
+ver'
+npm warn tarball tarball data for semver@7.7.4 (sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzh
+ZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/pre
+ttier'
+npm warn tarball tarball data for prettier@3.8.1 (sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/P
+TQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/bas
+eline-browser-mapping'
+npm warn tarball tarball data for baseline-browser-mapping@2.10.0 (sha512-lIyg0szRfYbiy67j9KN8IyeD
+7q7hcmqnJ1ddWmNt19ItGpNN64mnllmxUNFIOdOm6by97jlL6wfpTTJrmnjWAA==) seems to be corrupted. Trying ag
+ain.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/jse
+sc'
+npm warn tarball tarball data for jsesc@3.1.0 (sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poU
+p7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/bro
+wserslist'
+npm warn tarball tarball data for browserslist@4.28.1 (sha512-ZC5Bd0LgJXgwGqUknZY/vkUQ04r8NXnJZ3yY
+i4vDmSiZmC/pdSN0NbNRPxZpbtO4uAfDUAFffO8IZoM3Gj8IkA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/loo
+se-envify'
+npm warn tarball tarball data for loose-envify@1.4.0 (sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzuk
+Y7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==) seems to be corrupted. Trying again.
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@babel\core\node_modules\semver\LICENSE'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@mui\icons-material\AbcSharp.js'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib\config'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@babel\core\node_modules\semver\range.bnf'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\recharts\lib\chart\AccessibilityManager.js'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@mui\icons-material\esm'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/jit
+i'
+npm warn tarball tarball data for jiti@1.21.7 (sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnP
+qjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==) seems to be corrupted. Trying again.
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\node_modules\semver\bin'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\es6'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@mui\icons-material\AbcTwoTone.js'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@babel\core\node_modules\semver\semver.js'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@mui\icons-material\esm'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@babel\core\node_modules\semver\package.json'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\es6'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@mui\icons-material\AccessAlarm.js'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@babel\core\node_modules\semver\README.md'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@mui\icons-material\esm'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\es6'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@mui\icons-material\AccessAlarmOutlined.js'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@mui\icons-material\esm'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\es6'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@mui\icons-material\AccessAlarmRounded.js'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tarball tarball data for @babel/types@https://registry.npmmirror.com/@babel/types/-/types
+-7.29.0.tgz (sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd
+14dd3B0A==) seems to be corrupted. Trying again.
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@mui\icons-material\esm'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tarball tarball data for sucrase@https://registry.npmmirror.com/sucrase/-/sucrase-3.35.1.
+tgz (sha512-DhuTmvZWux4H1UOnWMB3sk0sbaCVOoQZjv8u1rDoTV0HTdGem9hkAZtl4JZy8P2z4Bg0nT+YMeOFyVr4zcG5Tw
+==) seems to be corrupted. Trying again.
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\es6'
+npm warn tarball tarball data for victory-vendor@https://registry.npmmirror.com/victory-vendor/-/v
+ictory-vendor-36.9.2.tgz (sha512-PnpQQMuxlwYdocC8fIJqVXvkeViHYzotI+NJrCuav0ZYFoq912ZHBk3mCeuj+5/Vp
+odOjPe1z0Fk2ihgzlXqjQ==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/rim
+raf'
+npm warn tarball tarball data for rimraf@3.0.2 (sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0
+L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/whi
+ch'
+npm warn tarball tarball data for which@2.0.2 (sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbX
+grMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/jso
+n5'
+npm warn tarball tarball data for json5@2.2.3 (sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t
+3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/upd
+ate-browserslist-db'
+npm warn tarball tarball data for update-browserslist-db@1.2.3 (sha512-Js0m9cx+qOgDxo0eMiFGEueWztz
++d4+M3rGlmKPT+T4IS/jP4ylw3Nwpu6cpTTP8R1MAC1kF4VbdLt3ARf209w==) seems to be corrupted. Trying again
+.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/aut
+oprefixer'
+npm warn tarball tarball data for autoprefixer@10.4.27 (sha512-NP9APE+tO+LuJGn7/9+cohklunJsXWiaWEf
+V3si4Gi/XHDwVNgkwr1J3RQYFIvPy76GmJ9/bW8vyoU1LcxwKHA==) seems to be corrupted. Trying again.
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@mui\icons-material\AccessAlarms.js'
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/res
+olve'
+npm warn tarball tarball data for resolve@1.22.11 (sha512-RfqAvLnMl313r7c9oclB1HhUEAezcpLjz95wFH4L
+Vuhk9JF/r22qmVP9AMmOU4vMX7Q8pN8jwNg/CSpdFnMjTQ==) seems to be corrupted. Trying again.
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/aco
+rn'
+npm warn tarball tarball data for acorn@8.16.0 (sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJl
+m/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==) seems to be corrupted. Trying again.
+npm warn tarball tarball data for @typescript-eslint/eslint-plugin@https://registry.npmmirror.com/
+@typescript-eslint/eslint-plugin/-/eslint-plugin-6.21.0.tgz (sha512-oy9+hTPCUFpngkEZUSzbf9MxI65wbK
+FoQYsgPdILTfbUldp5ovUuphZVe4i30emU9M/kP+T64Di0mxl7dSw3MA==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/rol
+lup'
+npm warn tarball tarball data for rollup@4.59.0 (sha512-2oMpl67a3zCH9H79LeMcbDhXW/UmWG/y2zuqnF2jQq
+5uq9TbM9TVyXvA4+t+ne2IIkBdrLpAaRQAvo7YI/Yyeg==) seems to be corrupted. Trying again.
+npm warn tarball tarball data for @typescript-eslint/scope-manager@https://registry.npmmirror.com/
+@typescript-eslint/scope-manager/-/scope-manager-6.21.0.tgz (sha512-OwLUIWZJry80O99zvqXVEioyniJMa+
+d2GrqpUTqi5/v5D5rOrppJVBPa0yKCblcigC0/aYAzxxqQ1B+DS2RYsg==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/js-
+yaml'
+npm warn tarball tarball data for js-yaml@4.1.1 (sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk
+2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==) seems to be corrupted. Trying again.
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\lib'
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/@ba
+bel/parser'
+npm warn tarball tarball data for @babel/parser@7.29.0 (sha512-IyDgFV5GeDUVX4YdF/3CPULtVGSXXMLh1xV
+IgdCgxApktqnQV0r7/8Nqthg+8YLGaAtdyIlo2qIdZrbCv4+7ww==) seems to be corrupted. Trying again.
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@mui\icons-material\esm'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/esb
+uild'
+npm warn tarball tarball data for esbuild@0.21.5 (sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/Ep
+khB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/vit
+e'
+npm warn tarball tarball data for vite@5.4.21 (sha512-o5a9xKjbtuhY6Bi5S3+HvbRERmouabWbyUcpXXUA1u+G
+NUKoROi9byOJ8M0nHbHYHkYICiMlqxkg1KkYmm25Sw==) seems to be corrupted. Trying again.
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/css
+esc'
+npm warn tarball tarball data for cssesc@3.0.0 (sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFh
+yDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==) seems to be corrupted. Trying again.
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\es6'
+npm warn tar ENOENT: Cannot cd into 'C:/Users/Administrator/Desktop/娓│2/frontend/node_modules/@ba
+bel/helper-compilation-targets/node_modules/semver'
+npm warn tarball tarball data for semver@6.3.1 (sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CW
+oSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==) seems to be corrupted. Trying again.
+npm warn tarball tarball data for @babel/runtime@https://registry.npmmirror.com/@babel/runtime/-/r
+untime-7.28.6.tgz (sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrs
+p9fCl0HoPRVTdA==) seems to be corrupted. Trying again.
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, open 'C:\Users\Administrator\Deskt
+op\娓│2\frontend\node_modules\@mui\icons-material\AccessAlarmSharp.js'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@mui\icons-material\esm'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\es6'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\@babel\core\lib'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\es6'
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\Administrator\Desk
+top\娓│2\frontend\node_modules\recharts\lib'
+npm warn tarball tarball data for loose-envify@1.4.0 (sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzuk
+Y7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==) seems to be corrupted. Trying again.
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.
+org/version-support for other options.

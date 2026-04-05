@@ -1,0 +1,33 @@
+{
+  "version_id": "v1.0",
+  "config_data": {
+    "hubu": {
+      "data_collection_interval": 30,
+      "max_retries": 3,
+      "timeout": 120
+    },
+    "libu": {
+      "response_timeout": 60
+    },
+    "bingbu": {
+      "scan_interval": 60
+    },
+    "吏部": {
+      "cache_ttl": 3600
+    },
+    "gongbu": {
+      "build_timeout": 300
+    }
+  },
+  "created_at": "2026-03-31T22:11:55.638536",
+  "status": "rollback",
+  "description": "修改户部智能体数据采集频率",
+  "change_summary": {},
+  "health_check_status": "pass",
+  "health_check_details": {
+    "hubu_heartbeat": true,
+    "data_collection": true,
+    "database_connection": true
+  },
+  "rollback_reason": null
+}

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房都督 - 专家标注工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            color: #888;
+            margin-top: 10px;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+        
+        .stat-label {
+            color: #888;
+            font-size: 14px;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .panel {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .panel-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .chat-display {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 16px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            max-width: 85%;
+        }
+        
+        .message.user {
+            background: #2d5a7b;
+            margin-left: auto;
+            text-align: right;
+        }
+        
+        .message.assistant {
+            background: #3d3d5c;
+        }
+        
+        .message-role {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+        
+        .annotation-section {
+            margin-bottom: 24px;
+        }
+        
+        .annotation-label {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        
+        .task-decomposition {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .task-tag {
+            background: rgba(0,212,255,0.2);
+            border: 1px solid #00d4ff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .task-tag:hover {
+            background: rgba(0,212,255,0.4);
+        }
+        
+        .task-tag.selected {
+            background: #00d4ff;
+            color: #000;
+        }
+        
+        .rating-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        
+        .star-rating {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .star {
+            font-size: 32px;
+            cursor: pointer;
+            color: #444;
+            transition: all 0.2s;
+        }
+        
+        .star:hover,
+        .star.active {
+            color: #ffd700;
+            transform: scale(1.2);
+        }
+        
+        .quality-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .metric-item {
+            background: rgba(0,0,0,0.2);
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .metric-label {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .metric-slider {
+            width: 100%;
+            margin-top: 8px;
+        }
+        
+        .text-area {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 12px;
+            color: #fff;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .text-area:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+        
+        .btn-container {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,212,255,0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .export-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .export-btn {
+            background: #28a745;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .export-btn:hover {
+            background: #218838;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            transition: width 0.3s;
+        }
+        
+        .history-panel {
+            margin-top: 30px;
+        }
+        
+        .history-item {
+            background: rgba(0,0,0,0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .history-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .history-rating {
+            color: #ffd700;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ 房都督专家标注工具</h1>
+            <p>为智能体训练创建高质量标准答案数据</p>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="totalAnnotated">0</div>
+                <div class="stat-label">已标注</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="totalPending">100</div>
+                <div class="stat-label">待标注</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="avgRating">-</div>
+                <div class="stat-label">平均评分</div>
+            </div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+        
+        <div class="main-content">
+            <div class="panel">
+                <div class="panel-title">💬 对话内容</div>
+                <div class="chat-display" id="chatDisplay">
+                    <div class="message user">
+                        <div class="message-role">用户</div>
+                        <div id="userMessage">我想了解一下长沙市岳麓区这边的房价走势</div>
+                    </div>
+                    <div class="message assistant">
+                        <div class="message-role">智能体</div>
+                        <div id="assistantMessage">您好！我是房都督平台的房产顾问。岳麓区作为长沙的核心区域，近年来房价呈现稳步上涨趋势...</div>
+                    </div>
+                </div>
+                
+                <div class="annotation-section">
+                    <div class="annotation-label">任务类型标注（可多选）</div>
+                    <div class="task-decomposition" id="taskTags">
+                        <div class="task-tag" data-task="valuation">房产估值</div>
+                        <div class="task-tag" data-task="consultation">政策咨询</div>
+                        <div class="task-tag" data-task="market_analysis">市场分析</div>
+                        <div class="task-tag" data-task="report">报告生成</div>
+                        <div class="task-tag" data-task="comparison">房源对比</div>
+                        <div class="task-tag" data-task="other">其他</div>
+                    </div>
+                </div>
+                
+                <div class="annotation-section">
+                    <div class="annotation-label">涉及智能体</div>
+                    <div class="task-decomposition" id="agentTags">
+                        <div class="task-tag" data-agent="zhongshu">中书省（决策）</div>
+                        <div class="task-tag" data-agent="menshang">门下省（审核）</div>
+                        <div class="task-tag" data-agent="gongbu">工部（估值）</div>
+                        <div class="task-tag" data-agent="libu">礼部（对话）</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel">
+                <div class="panel-title">⭐ 质量评估</div>
+                
+                <div class="annotation-section">
+                    <div class="annotation-label">整体评分</div>
+                    <div class="rating-container">
+                        <div class="star-rating" id="starRating">
+                            <span class="star" data-rating="1">★</span>
+                            <span class="star" data-rating="2">★</span>
+                            <span class="star" data-rating="3">★</span>
+                            <span class="star" data-rating="4">★</span>
+                            <span class="star" data-rating="5">★</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quality-metrics">
+                    <div class="metric-item">
+                        <div class="metric-label">准确性</div>
+                        <input type="range" class="metric-slider" id="accuracySlider" min="1" max="5" value="3">
+                        <div id="accuracyValue">3</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">完整性</div>
+                        <input type="range" class="metric-slider" id="completenessSlider" min="1" max="5" value="3">
+                        <div id="completenessValue">3</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">友好度</div>
+                        <input type="range" class="metric-slider" id="friendlinessSlider" min="1" max="5" value="3">
+                        <div id="friendlinessValue">3</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">专业性</div>
+                        <input type="range" class="metric-slider" id="professionalismSlider" min="1" max="5" value="3">
+                        <div id="professionalismValue">3</div>
+                    </div>
+                </div>
+                
+                <div class="annotation-section" style="margin-top: 20px;">
+                    <div class="annotation-label">标准答案（可选）</div>
+                    <textarea class="text-area" id="correctAnswer" placeholder="如果智能体回复有误，请在此填写正确答案..."></textarea>
+                </div>
+                
+                <div class="annotation-section">
+                    <div class="annotation-label">标注说明</div>
+                    <textarea class="text-area" id="annotationNote" placeholder="添加标注说明或改进建议..."></textarea>
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="skipCurrent()">跳过</button>
+                    <button class="btn btn-primary" onclick="submitAnnotation()">提交标注</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel history-panel">
+            <div class="panel-title">📝 标注历史</div>
+            <div id="historyList"></div>
+        </div>
+        
+        <div class="export-section">
+            <button class="export-btn" onclick="exportData()">📥 导出JSONL文件</button>
+            <span style="margin-left: 16px; color: #888;">已标注数据将保存为训练集格式</span>
+        </div>
+    </div>
+    
+    <script>
+        const annotationData = [];
+        let currentRating = 0;
+        let currentDataIndex = 0;
+        
+        const mockData = [
+            {
+                id: 1,
+                userMessage: "我想了解一下长沙市岳麓区这边的房价走势",
+                assistantMessage: "您好！我是房都督平台的房产顾问。岳麓区作为长沙的核心区域，近年来房价呈现稳步上涨趋势。根据最新数据，岳麓区二手房均价约为12000元/平方米，相比去年同期上涨约5%。"
+            },
+            {
+                id: 2,
+                userMessage: "帮我评估一下这套房子的价值：岳麓区麓谷街道，120平米，三室两厅，精装修，2018年建成",
+                assistantMessage: "根据您提供的信息，我为您初步评估如下：\n\n位置：岳麓区麓谷街道，属于科技园区，配套完善\n面积：120平米，三室两厅，户型合理\n装修：精装修，保值性好\n房龄：2018年建成，较新\n\n预估价格范围：150-180万元\n建议参考周边成交价进一步确认。"
+            },
+            {
+                id: 3,
+                userMessage: "长沙现在的购房政策是什么？外地人可以买房吗？",
+                assistantMessage: "长沙市目前的购房政策如下：\n\n1. 本地户籍：首套房首付30%，二套房首付45%\n2. 外地户籍：需提供在长沙连续缴纳24个月社保或个税证明\n3. 限购区域：芙蓉区、天心区、岳麓区、开福区、雨花区、望城区\n\n外地人在满足社保条件后可以购房。"
+            }
+        ];
+        
+        function loadData(index) {
+            const data = mockData[index % mockData.length];
+            document.getElementById('userMessage').textContent = data.userMessage;
+            document.getElementById('assistantMessage').textContent = data.assistantMessage;
+            
+            document.querySelectorAll('.task-tag').forEach(tag => tag.classList.remove('selected'));
+            document.getElementById('starRating').querySelectorAll('.star').forEach(s => s.classList.remove('active'));
+            currentRating = 0;
+            
+            document.querySelectorAll('.metric-slider').forEach(slider => {
+                slider.value = 3;
+                document.getElementById(slider.id.replace('Slider', 'Value')).textContent = '3';
+            });
+            
+            document.getElementById('correctAnswer').value = '';
+            document.getElementById('annotationNote').value = '';
+        }
+        
+        document.querySelectorAll('.task-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+        
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = parseInt(this.dataset.rating);
+                currentRating = rating;
+                
+                document.querySelectorAll('.star').forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        document.querySelectorAll('.metric-slider').forEach(slider => {
+            slider.addEventListener('input', function() {
+                document.getElementById(this.id.replace('Slider', 'Value')).textContent = this.value;
+            });
+        });
+        
+        function submitAnnotation() {
+            if (currentRating === 0) {
+                alert('请先进行评分');
+                return;
+            }
+            
+            const selectedTasks = Array.from(document.querySelectorAll('#taskTags .task-tag.selected'))
+                .map(tag => tag.dataset.task);
+            
+            const selectedAgents = Array.from(document.querySelectorAll('#agentTags .task-tag.selected'))
+                .map(tag => tag.dataset.agent);
+            
+            const annotation = {
+                id: mockData[currentDataIndex % mockData.length].id,
+                timestamp: new Date().toISOString(),
+                userMessage: document.getElementById('userMessage').textContent,
+                assistantMessage: document.getElementById('assistantMessage').textContent,
+                rating: currentRating,
+                tasks: selectedTasks,
+                agents: selectedAgents,
+                metrics: {
+                    accuracy: parseInt(document.getElementById('accuracySlider').value),
+                    completeness: parseInt(document.getElementById('completenessSlider').value),
+                    friendliness: parseInt(document.getElementById('friendlinessSlider').value),
+                    professionalism: parseInt(document.getElementById('professionalismSlider').value)
+                },
+                correctAnswer: document.getElementById('correctAnswer').value,
+                annotationNote: document.getElementById('annotationNote').value
+            };
+            
+            annotationData.push(annotation);
+            updateStats();
+            addHistoryItem(annotation);
+            
+            currentDataIndex++;
+            loadData(currentDataIndex);
+        }
+        
+        function skipCurrent() {
+            currentDataIndex++;
+            loadData(currentDataIndex);
+        }
+        
+        function updateStats() {
+            const total = annotationData.length;
+            const pending = 100 - total;
+            const avgRating = total > 0 
+                ? (annotationData.reduce((sum, a) => sum + a.rating, 0) / total).toFixed(1)
+                : '-';
+            
+            document.getElementById('totalAnnotated').textContent = total;
+            document.getElementById('totalPending').textContent = Math.max(0, pending);
+            document.getElementById('avgRating').textContent = avgRating;
+            document.getElementById('progressFill').style.width = `${Math.min(100, total)}%`;
+        }
+        
+        function addHistoryItem(annotation) {
+            const historyList = document.getElementById('historyList');
+            const item = document.createElement('div');
+            item.className = 'history-item fade-in';
+            item.innerHTML = `
+                <div class="history-item-header">
+                    <span>ID: ${annotation.id}</span>
+                    <span class="history-rating">${'★'.repeat(annotation.rating)}${'☆'.repeat(5-annotation.rating)}</span>
+                </div>
+                <div>任务: ${annotation.tasks.join(', ') || '未标注'}</div>
+                <div>智能体: ${annotation.agents.join(', ') || '未标注'}</div>
+            `;
+            historyList.insertBefore(item, historyList.firstChild);
+        }
+        
+        function exportData() {
+            if (annotationData.length === 0) {
+                alert('暂无标注数据可导出');
+                return;
+            }
+            
+            const jsonlContent = annotationData.map(item => JSON.stringify(item)).join('\n');
+            
+            const blob = new Blob([jsonlContent], { type: 'application/jsonl' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `annotations_${new Date().toISOString().slice(0,10)}.jsonl`;
+            a.click();
+            
+            URL.revokeObjectURL(url);
+        }
+        
+        loadData(0);
+    </script>
+</body>
+</html>

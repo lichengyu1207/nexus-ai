@@ -1,0 +1,24 @@
+[Unit]
+Description=Gatekeeper Agent Restart Daemon
+Documentation=https://github.com/your-org/gatekeeper
+After=network.target redis.service docker.service
+Wants=redis.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/gatekeeper
+ExecStart=/usr/bin/python3 -m gatekeeper.main
+Restart=always
+RestartSec=10
+EnvironmentFile=/etc/gatekeeper.env
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=gatekeeper
+
+LimitNOFILE=65535
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

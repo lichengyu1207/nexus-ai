@@ -1,0 +1,198 @@
+.agent-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: all 0.3s ease;
+  border-left: 4px solid #e0e0e0;
+}
+
+.agent-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.agent-card.replay-mode {
+  opacity: 0.8;
+}
+
+.agent-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.agent-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar-emoji {
+  font-size: 24px;
+}
+
+.agent-info {
+  flex: 1;
+}
+
+.agent-name {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.agent-status {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.status-running {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-success {
+  background: #e8f5e8;
+  color: #388e3c;
+}
+
+.status-failed {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+.status-cancelled {
+  background: #f5f5f5;
+  color: #616161;
+}
+
+.status-pending {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.agent-duration {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.agent-body {
+  margin-top: 10px;
+}
+
+.thinking-logs {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.thinking-logs h5 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+.logs-container {
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.log-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.log-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #667eea;
+  margin-right: 8px;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.log-text {
+  color: #555;
+  line-height: 1.4;
+}
+
+.agent-result {
+  margin-top: 10px;
+}
+
+.view-details-button {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.view-details-button:hover {
+  background: #5a6fd8;
+}
+
+.agent-details {
+  margin-top: 15px;
+  padding: 12px;
+  background: #f0f4ff;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.agent-details p {
+  margin: 5px 0;
+  color: #444;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .agent-card {
+    padding: 12px;
+  }
+
+  .agent-header {
+    gap: 10px;
+  }
+
+  .agent-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .avatar-emoji {
+    font-size: 20px;
+  }
+
+  .agent-name {
+    font-size: 14px;
+  }
+
+  .logs-container {
+    max-height: 100px;
+  }
+
+  .log-item {
+    font-size: 12px;
+  }
+}

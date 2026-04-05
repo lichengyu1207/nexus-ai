@@ -1,0 +1,14 @@
+{
+  "version_id": "v2.0.0",
+  "model_path": "C:\\Users\\Administrator\\Desktop\\測試2\\backend\\test_model.txt",
+  "config_path": null,
+  "checksum": "d13dc60abac79e91640573c730aad276",
+  "created_at": 1774176189.1481566,
+  "metrics": {
+    "accuracy": 0.85,
+    "error_rate": 0.08
+  },
+  "metadata": {},
+  "is_stable": true,
+  "rollback_count": 0
+}

@@ -1,0 +1,69 @@
+{
+  "name": "DataCollectorAgent",
+  "description": "采集房产数据，包括房价、周边配套、历史交易等信息",
+  "url": "http://localhost:8001/a2a/data_collector",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "push_notifications": true
+  },
+  "skills": [
+    {
+      "id": "fetch_price",
+      "name": "获取房价",
+      "description": "根据区域和房型获取实时房价数据",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "district": {
+            "type": "string",
+            "description": "区域名称"
+          },
+          "property_type": {
+            "type": "string",
+            "description": "房产类型"
+          }
+        },
+        "required": ["district"]
+      }
+    },
+    {
+      "id": "fetch_nearby_facilities",
+      "name": "获取周边配套",
+      "description": "获取指定区域周边的学校、医院、商场等配套设施",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "位置"
+          },
+          "radius": {
+            "type": "number",
+            "description": "搜索半径（公里）"
+          }
+        },
+        "required": ["location"]
+      }
+    },
+    {
+      "id": "fetch_transaction_history",
+      "name": "获取交易历史",
+      "description": "获取指定区域的历史交易数据",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "district": {
+            "type": "string",
+            "description": "区域名称"
+          },
+          "months": {
+            "type": "number",
+            "description": "查询月数"
+          }
+        },
+        "required": ["district"]
+      }
+    }
+  ]
+}

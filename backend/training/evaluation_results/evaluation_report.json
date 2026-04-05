@@ -1,0 +1,75 @@
+{
+  "timestamp": "2026-03-22T18:36:57.415094",
+  "evaluations": {
+    "task_decomposition": {
+      "precision": 0.6283333333333333,
+      "recall": 1.0,
+      "f1_score": 0.7296507936507938,
+      "total_samples": 100,
+      "passed": "False"
+    },
+    "agent_selection": {
+      "agent_selection_accuracy": 0.61,
+      "correct": 61,
+      "total": 100,
+      "passed": false
+    },
+    "valuation": {
+      "mae": 156854.68633959148,
+      "mape": 5.220478930373978,
+      "rmse": 196940.5638639962,
+      "within_5pct": 0.51,
+      "within_10pct": 0.94,
+      "total_samples": 100,
+      "passed": "False"
+    },
+    "valuation_by_category": {
+      "住宅": {
+        "mape": 4.915760319106206,
+        "count": 32,
+        "max_error": 10.827402953660863,
+        "min_error": 0.07375481703316145
+      },
+      "办公": {
+        "mape": 5.4918924088391305,
+        "count": 33,
+        "max_error": 10.365898272486708,
+        "min_error": 0.18608609801916387
+      },
+      "别墅": {
+        "mape": 4.7074533136010706,
+        "count": 18,
+        "max_error": 9.393944623242739,
+        "min_error": 0.5147687502962157
+      },
+      "商业": {
+        "mape": 5.810409040558153,
+        "count": 17,
+        "max_error": 10.716300379249137,
+        "min_error": 0.7172900607224214
+      }
+    },
+    "dialogue": {
+      "bleu": 0.0,
+      "rouge_1": 0.0,
+      "rouge_2": 0,
+      "rouge_l": 0.0,
+      "total_samples": 100,
+      "human_avg_rating": 4.09,
+      "human_rating_distribution": {
+        "1": 0,
+        "2": 0,
+        "3": 27,
+        "4": 37,
+        "5": 36
+      },
+      "passed": "False"
+    }
+  },
+  "summary": {
+    "total_evaluations": 4,
+    "passed": 0,
+    "pass_rate": 0.0,
+    "overall_passed": false
+  }
+}

@@ -1,0 +1,81 @@
+:root {
+  --svg-icon-bg-primary: #0A2342;
+  --svg-icon-stroke-gold: #D4AF37;
+  --svg-icon-stroke-width: 1.5;
+  --svg-icon-stroke-width-thick: 2;
+  --svg-icon-stroke-width-thin: 1;
+
+  --svg-icon-size-xs: 16px;
+  --svg-icon-size-sm: 24px;
+  --svg-icon-size-md: 32px;
+  --svg-icon-size-lg: 48px;
+  --svg-icon-size-xl: 64px;
+  --svg-icon-size-2xl: 96px;
+
+  --svg-icon-radius-sm: 4px;
+  --svg-icon-radius-md: 8px;
+  --svg-icon-radius-lg: 12px;
+  --svg-icon-radius-full: 50%;
+
+  --svg-icon-accent-libu: #FF9F4A;
+  --svg-icon-accent-hubu: #D4AF37;
+  --svg-icon-accent-bingbu: #2C8C8C;
+  --svg-icon-accent-gongbu: #2C7DA0;
+  --svg-icon-accent-libu2: #8B5CF6;
+  --svg-icon-accent-xingbu: #C44536;
+  --svg-icon-accent-hippocampus: #9B6BFF;
+  --svg-icon-accent-attack: #1E6091;
+  --svg-icon-accent-social: #FFB347;
+  --svg-icon-accent-audit: #2E7D32;
+}
+
+.svg-icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.svg-icon-xs { width: var(--svg-icon-size-xs); height: var(--svg-icon-size-xs); }
+.svg-icon-sm { width: var(--svg-icon-size-sm); height: var(--svg-icon-size-sm); }
+.svg-icon-md { width: var(--svg-icon-size-md); height: var(--svg-icon-size-md); }
+.svg-icon-lg { width: var(--svg-icon-size-lg); height: var(--svg-icon-size-lg); }
+.svg-icon-xl { width: var(--svg-icon-size-xl); height: var(--svg-icon-size-xl); }
+.svg-icon-2xl { width: var(--svg-icon-size-2xl); height: var(--svg-icon-size-2xl); }
+
+.svg-icon-circle {
+  border-radius: var(--svg-icon-radius-full);
+}
+
+.svg-icon-rounded {
+  border-radius: var(--svg-icon-radius-md);
+}
+
+.svg-icon-animated {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.svg-icon-animated:hover {
+  transform: scale(1.05);
+}
+
+.svg-icon-glow {
+  filter: drop-shadow(0 0 4px var(--svg-icon-stroke-gold));
+}
+
+@keyframes svg-icon-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.svg-icon-pulse {
+  animation: svg-icon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes svg-icon-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.svg-icon-spin {
+  animation: svg-icon-spin 1s linear infinite;
+}

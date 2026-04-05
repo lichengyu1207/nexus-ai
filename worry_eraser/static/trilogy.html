@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烦恼橡皮擦 - 三部曲演示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+        }
+        
+        .step {
+            text-align: center;
+            flex: 1;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active {
+            transform: scale(1.1);
+        }
+        
+        .step.completed {
+            opacity: 0.6;
+        }
+        
+        .step-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .step-desc {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        .input-section textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: none;
+            font-family: inherit;
+        }
+        
+        .input-section textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .animation-container.active {
+            display: flex;
+        }
+        
+        canvas {
+            display: block;
+        }
+        
+        .memory-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .memory-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .report-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+        }
+        
+        .report-card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .report-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .report-section h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .report-section p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .suggestions {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .suggestions li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .suggestions li:last-child {
+            border-bottom: none;
+        }
+        
+        .phase-label {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        .agent-emoji {
+            position: absolute;
+            font-size: 64px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .feature {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .feature h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .feature p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ 烦恼橡皮擦三部曲演示</h1>
+            <p>体验从倾诉到关怀的完整过程</p>
+        </div>
+        
+        <div class="content">
+            <!-- 步骤指示器 -->
+            <div class="steps">
+                <div class="step" id="step1">
+                    <div class="step-icon">✨</div>
+                    <div class="step-title">倾诉回响</div>
+                    <div class="step-desc">文字粒子化，飞向智能体</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-icon">💭</div>
+                    <div class="step-title">记忆涟漪</div>
+                    <div class="step-desc">涟漪动画，显示记忆卡片</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-icon">📖</div>
+                    <div class="step-title">慰藉成章</div>
+                    <div class="step-desc">打字机效果，报告生成</div>
+                </div>
+            </div>
+            
+            <!-- 输入区域 -->
+            <div class="input-section" id="inputSection">
+                <textarea 
+                    id="userInput" 
+                    rows="4" 
+                    placeholder="请输入您的烦恼，开始体验三部曲...&#10;&#10;例如：最近工作压力很大，感觉喘不过气来..."
+                ></textarea>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn btn-primary" onclick="startTrilogy()">
+                        🎬 开始体验三部曲
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 控制按钮 -->
+            <div class="controls" id="controls" style="display: none;">
+                <button class="btn btn-secondary" onclick="togglePause()">
+                    <span id="pauseBtn">⏸️ 暂停</span>
+                </button>
+                <button class="btn btn-secondary" onclick="skipAnimation()">
+                    ⏭️ 跳过
+                </button>
+                <button class="btn btn-secondary" onclick="replayAnimation()">
+                    🔄 重播
+                </button>
+            </div>
+            
+            <!-- 功能说明 -->
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">✨</div>
+                    <h3>第一幕：倾诉回响</h3>
+                    <p>您的文字将化作粒子，飞向智能体，象征着您的烦恼被倾听和理解。</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💭</div>
+                    <h3>第二幕：记忆涟漪</h3>
+                    <p>系统检索相似记忆，用涟漪动画表现回忆被唤醒，智能体提及过往经历。</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📖</div>
+                    <h3>第三幕：慰藉成章</h3>
+                    <p>生成专属关怀报告，包含情绪分析、暖心建议和成长记录。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 动画容器 -->
+    <div class="animation-container" id="animationContainer">
+        <canvas id="animationCanvas"></canvas>
+        <div class="phase-label" id="phaseLabel"></div>
+    </div>
+    
+    <script>
+        let currentStep = 0;
+        let isPaused = false;
+        let userInput = '';
+        let animationId = null;
+        
+        function startTrilogy() {
+            userInput = document.getElementById('userInput').value.trim();
+            if (!userInput) {
+                alert('请输入您的烦恼');
+                return;
+            }
+            
+            document.getElementById('inputSection').style.display = 'none';
+            document.getElementById('controls').style.display = 'flex';
+            
+            currentStep = 1;
+            playStep1();
+        }
+        
+        function playStep1() {
+            updateStepIndicator(1);
+            showAnimation();
+            playConfessionAnimation(userInput, () => {
+                if (!isPaused) {
+                    currentStep = 2;
+                    playStep2();
+                }
+            });
+        }
+        
+        function playStep2() {
+            updateStepIndicator(2);
+            showMemoryRipple(() => {
+                if (!isPaused) {
+                    currentStep = 3;
+                    playStep3();
+                }
+            });
+        }
+        
+        function playStep3() {
+            updateStepIndicator(3);
+            showReport(() => {
+                completeTrilogy();
+            });
+        }
+        
+        function showAnimation() {
+            document.getElementById('animationContainer').classList.add('active');
+        }
+        
+        function hideAnimation() {
+            document.getElementById('animationContainer').classList.remove('active');
+        }
+        
+        function playConfessionAnimation(text, onComplete) {
+            const canvas = document.getElementById('animationCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            document.getElementById('phaseLabel').textContent = '第一幕：倾诉回响';
+            
+            const particles = [];
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const targetX = canvas.width * 0.7;
+            const targetY = canvas.height * 0.3;
+            
+            const chars = text.split('');
+            const charsPerRow = Math.ceil(Math.sqrt(chars.length));
+            const spacing = 30;
+            
+            chars.forEach((char, index) => {
+                const row = Math.floor(index / charsPerRow);
+                const col = index % charsPerRow;
+                const startX = centerX - (charsPerRow * spacing) / 2 + col * spacing;
+                const startY = centerY + row * spacing;
+                
+                particles.push({
+                    x: startX,
+                    y: startY,
+                    vx: 0,
+                    vy: 0,
+                    life: 0,
+                    maxLife: 120,
+                    char: char,
+                    size: 16
+                });
+            });
+            
+            let frame = 0;
+            
+            function animate() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(p => {
+                    p.life++;
+                    
+                    if (frame < 60) {
+                        p.x += Math.sin(frame * 0.05 + p.x * 0.01) * 0.5;
+                        p.y += Math.cos(frame * 0.05 + p.y * 0.01) * 0.5;
+                    } else {
+                        const dx = targetX - p.x;
+                        const dy = targetY - p.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const speed = Math.min(distance * 0.05, 8);
+                        
+                        p.vx = (dx / distance) * speed;
+                        p.vy = (dy / distance) * speed;
+                        p.x += p.vx;
+                        p.y += p.vy;
+                    }
+                    
+                    const alpha = Math.max(0, 1 - p.life / p.maxLife);
+                    ctx.font = `${p.size}px Arial`;
+                    ctx.fillStyle = `rgba(102, 126, 234, ${alpha})`;
+                    ctx.textAlign = 'center';
+                    ctx.fillText(p.char, p.x, p.y);
+                });
+                
+                frame++;
+                
+                if (frame < 150) {
+                    animationId = requestAnimationFrame(animate);
+                } else {
+                    setTimeout(onComplete, 500);
+                }
+            }
+            
+            animate();
+        }
+        
+        function showMemoryRipple(onComplete) {
+            const canvas = document.getElementById('animationCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = 400;
+            canvas.height = 400;
+            
+            document.getElementById('phaseLabel').textContent = '第二幕：记忆涟漪';
+            
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            
+            let frame = 0;
+            const maxRadius = 180;
+            const rippleCount = 3;
+            const rippleDelay = 20;
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                for (let i = 0; i < rippleCount; i++) {
+                    const rippleFrame = frame - i * rippleDelay;
+                    if (rippleFrame > 0) {
+                        const radius = rippleFrame * 2;
+                        const alpha = Math.max(0, 1 - radius / maxRadius);
+                        
+                        if (alpha > 0) {
+                            ctx.beginPath();
+                            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+                            ctx.strokeStyle = `rgba(102, 126, 234, ${alpha * 0.6})`;
+                            ctx.lineWidth = 2;
+                            ctx.stroke();
+                            
+                            ctx.beginPath();
+                            ctx.arc(centerX, centerY, radius * 0.8, 0, Math.PI * 2);
+                            ctx.strokeStyle = `rgba(118, 75, 162, ${alpha * 0.4})`;
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                
+                frame++;
+                
+                if (frame < 120) {
+                    animationId = requestAnimationFrame(animate);
+                } else {
+                    showMemoryCard(onComplete);
+                }
+            }
+            
+            animate();
+        }
+        
+        function showMemoryCard(onComplete) {
+            const container = document.getElementById('animationContainer');
+            container.innerHTML = `
+                <div class="memory-card">
+                    <h3>📖 记忆唤醒</h3>
+                    <p>你曾说过：工作压力大，加班太多</p>
+                    <p style="margin-top: 10px; font-size: 12px; color: #999;">ID: memory-001</p>
+                </div>
+            `;
+            
+            setTimeout(onComplete, 3000);
+        }
+        
+        function showReport(onComplete) {
+            const container = document.getElementById('animationContainer');
+            container.innerHTML = `
+                <div class="report-card">
+                    <h2>📖 第三幕：慰藉成章</h2>
+                    <div class="report-section">
+                        <h3>烦恼分析报告</h3>
+                        <p>您最近提到了工作压力相关的烦恼</p>
+                    </div>
+                    <div class="report-section">
+                        <h3>情绪趋势</h3>
+                        <p>从记录看，情绪波动较大，但整体向稳</p>
+                    </div>
+                    <div class="report-section">
+                        <h3>建议</h3>
+                        <ul class="suggestions">
+                            <li>• 尝试深呼吸5分钟，缓解工作压力</li>
+                            <li>• 与同事或上级沟通，寻求支持</li>
+                            <li>• 设定小目标，逐步完成工作任务</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" onclick="completeTrilogy()">完成体验</button>
+                </div>
+            `;
+        }
+        
+        function completeTrilogy() {
+            hideAnimation();
+            document.getElementById('inputSection').style.display = 'block';
+            document.getElementById('controls').style.display = 'none';
+            document.getElementById('userInput').value = '';
+            
+            // 重置步骤指示器
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active', 'completed');
+            });
+            
+            currentStep = 0;
+        }
+        
+        function updateStepIndicator(step) {
+            document.querySelectorAll('.step').forEach((s, index) => {
+                s.classList.remove('active');
+                if (index + 1 < step) {
+                    s.classList.add('completed');
+                } else if (index + 1 === step) {
+                    s.classList.add('active');
+                }
+            });
+        }
+        
+        function togglePause() {
+            isPaused = !isPaused;
+            document.getElementById('pauseBtn').textContent = isPaused ? '▶️ 继续' : '⏸️ 暂停';
+        }
+        
+        function skipAnimation() {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            completeTrilogy();
+        }
+        
+        function replayAnimation() {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            currentStep = 1;
+            playStep1();
+        }
+    </script>
+</body>
+</html>

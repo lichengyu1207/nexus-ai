@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="houseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA"/>
+      <stop offset="100%" style="stop-color:#3B82F6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Body -->
+  <ellipse cx="64" cy="78" rx="36" ry="38" fill="url(#bodyGradient)"/>
+  <ellipse cx="54" cy="68" rx="12" ry="16" fill="#60A5FA" opacity="0.3"/>
+  
+  <!-- Face screen -->
+  <ellipse cx="64" cy="72" rx="28" ry="26" fill="#F8FAFC"/>
+  
+  <!-- Happy eyes - curved (closed) -->
+  <path d="M46 68 Q52 62 58 68" stroke="#1E40AF" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M70 68 Q76 62 82 68" stroke="#1E40AF" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Blush marks -->
+  <ellipse cx="40" cy="76" rx="6" ry="3" fill="#FDA4AF" opacity="0.6"/>
+  <ellipse cx="88" cy="76" rx="6" ry="3" fill="#FDA4AF" opacity="0.6"/>
+  
+  <!-- Big smile -->
+  <path d="M48 82 Q64 96 80 82" stroke="#1E40AF" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Sparkles around -->
+  <g fill="#FCD34D">
+    <polygon points="20,40 22,44 26,44 23,47 24,51 20,48 16,51 17,47 14,44 18,44"/>
+    <polygon points="108,50 110,54 114,54 111,57 112,61 108,58 104,61 105,57 102,54 106,54"/>
+    <polygon points="30,100 31,102 33,102 32,104 32,106 30,105 28,106 28,104 27,102 29,102"/>
+  </g>
+  
+  <!-- Antenna base -->
+  <rect x="58" y="38" width="12" height="8" rx="2" fill="#374151"/>
+  
+  <!-- House antenna -->
+  <path d="M64 12 L52 28 L76 28 Z" fill="url(#houseGradient)"/>
+  <rect x="58" y="28" width="12" height="10" fill="#60A5FA"/>
+  <rect x="62" y="32" width="4" height="6" fill="#1D4ED8"/>
+  
+  <!-- Antenna connector -->
+  <rect x="61" y="38" width="6" height="4" fill="#4B5563"/>
+  
+  <!-- Arms - raised in joy -->
+  <ellipse cx="20" cy="60" rx="10" ry="14" fill="url(#bodyGradient)" transform="rotate(-20, 20, 60)"/>
+  <ellipse cx="108" cy="60" rx="10" ry="14" fill="url(#bodyGradient)" transform="rotate(20, 108, 60)"/>
+  
+  <!-- Feet -->
+  <ellipse cx="48" cy="116" rx="14" ry="8" fill="url(#bodyGradient)"/>
+  <ellipse cx="80" cy="116" rx="14" ry="8" fill="url(#bodyGradient)"/>
+  
+  <!-- Chest light - happy glow -->
+  <circle cx="64" cy="98" r="6" fill="#34D399"/>
+  <circle cx="64" cy="98" r="3" fill="#86EFAC"/>
+</svg>

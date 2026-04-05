@@ -1,0 +1,65 @@
+{
+  "name": "MarketAnalystAgent",
+  "description": "分析房产市场趋势、价格走势、投资潜力等",
+  "url": "http://localhost:8001/a2a/market_analyst",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "push_notifications": true
+  },
+  "skills": [
+    {
+      "id": "analyze_price_trend",
+      "name": "分析价格趋势",
+      "description": "分析指定区域的价格走势和预测",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "district": {
+            "type": "string",
+            "description": "区域名称"
+          },
+          "time_range": {
+            "type": "string",
+            "description": "时间范围"
+          }
+        },
+        "required": ["district"]
+      }
+    },
+    {
+      "id": "evaluate_investment_potential",
+      "name": "评估投资潜力",
+      "description": "评估房产的投资潜力和回报率",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "property_data": {
+            "type": "object",
+            "description": "房产数据"
+          },
+          "investment_period": {
+            "type": "number",
+            "description": "投资期限（年）"
+          }
+        },
+        "required": ["property_data"]
+      }
+    },
+    {
+      "id": "assess_risk",
+      "name": "评估风险",
+      "description": "评估房产投资的风险等级",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "property_data": {
+            "type": "object",
+            "description": "房产数据"
+          }
+        },
+        "required": ["property_data"]
+      }
+    }
+  ]
+}

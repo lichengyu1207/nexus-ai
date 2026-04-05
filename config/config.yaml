@@ -1,0 +1,30 @@
+# Application configuration
+app:
+  name: "Fangtan AI Platform"
+  version: "1.0.0"
+  description: "Intelligent real estate analysis platform"
+
+# AI Agent configuration
+ai_agents:
+  timeout: 300
+  max_retries: 3
+  default_model: "gpt-4"
+  temperature: 0.7
+
+# Data fusion configuration
+data_fusion:
+  sources:
+    - name: "public_api"
+      enabled: true
+    - name: "scraped_data"
+      enabled: true
+    - name: "third_party"
+      enabled: false
+  batch_size: 100
+  cache_ttl: 3600
+
+# Task engine configuration
+task_engine:
+  max_concurrent_tasks: 5
+  step_timeout: 600
+  workflow_retry_delay: 60

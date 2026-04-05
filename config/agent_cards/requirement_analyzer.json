@@ -1,0 +1,42 @@
+{
+  "name": "RequirementAnalyzerAgent",
+  "description": "分析用户需求，提取关键信息，确定分析方向",
+  "url": "http://localhost:8001/a2a/requirement_analyzer",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "push_notifications": true
+  },
+  "skills": [
+    {
+      "id": "extract_requirements",
+      "name": "提取需求",
+      "description": "从用户查询中提取关键需求信息",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "用户查询文本"
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "id": "validate_requirements",
+      "name": "验证需求",
+      "description": "验证用户需求是否完整和合理",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "requirements": {
+            "type": "object",
+            "description": "需求对象"
+          }
+        },
+        "required": ["requirements"]
+      }
+    }
+  ]
+}

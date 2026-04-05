@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package agent;
+
+// 智能体服务定义
+service AgentService {
+    // 执行任务
+    rpc Execute (TaskRequest) returns (TaskResponse);
+    
+    // 获取状态
+    rpc GetStatus (Empty) returns (Status);
+}
+
+// 空消息
+message Empty {}
+
+// 任务请求
+message TaskRequest {
+    string task_id = 1;      // 任务ID
+    string action = 2;        // 动作类型
+    map<string, string> params = 3;  // 参数
+}
+
+// 任务响应
+message TaskResponse {
+    bool success = 1;         // 是否成功
+    string result = 2;        // 结果（JSON字符串）
+    string error = 3;         // 错误信息
+}
+
+// 状态
+message Status {
+    string agent_name = 1;    // 智能体名称
+    string status = 2;        // 状态（active, inactive）
+    int32 task_count = 3;     // 任务计数
+    double cpu_usage = 4;     // CPU使用率
+    double memory_usage = 5;  // 内存使用率
+}

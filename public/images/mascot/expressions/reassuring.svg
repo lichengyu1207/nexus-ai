@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="houseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA"/>
+      <stop offset="100%" style="stop-color:#3B82F6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Body -->
+  <ellipse cx="64" cy="78" rx="36" ry="38" fill="url(#bodyGradient)"/>
+  <ellipse cx="54" cy="68" rx="12" ry="16" fill="#60A5FA" opacity="0.3"/>
+  
+  <!-- Face screen -->
+  <ellipse cx="64" cy="72" rx="28" ry="26" fill="#F8FAFC"/>
+  
+  <!-- Calm, reassuring eyes - gentle arc -->
+  <path d="M46 68 Q52 72 58 68" stroke="#1E40AF" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M70 68 Q76 72 82 68" stroke="#1E40AF" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Soft blush -->
+  <ellipse cx="42" cy="76" rx="5" ry="2.5" fill="#FDA4AF" opacity="0.4"/>
+  <ellipse cx="86" cy="76" rx="5" ry="2.5" fill="#FDA4AF" opacity="0.4"/>
+  
+  <!-- Gentle reassuring smile -->
+  <path d="M52 82 Q64 92 76 82" stroke="#1E40AF" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Soft glow around -->
+  <circle cx="64" cy="72" r="38" fill="none" stroke="#60A5FA" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Heart shapes -->
+  <path d="M18 50 C18 46 22 44 24 46 C26 44 30 46 30 50 C30 54 24 58 24 58 C24 58 18 54 18 50" fill="#FDA4AF" opacity="0.6"/>
+  <path d="M98 50 C98 46 102 44 104 46 C106 44 110 46 110 50 C110 54 104 58 104 58 C104 58 98 54 98 50" fill="#FDA4AF" opacity="0.6"/>
+  
+  <!-- Antenna base -->
+  <rect x="58" y="38" width="12" height="8" rx="2" fill="#374151"/>
+  
+  <!-- House antenna -->
+  <path d="M64 12 L52 28 L76 28 Z" fill="url(#houseGradient)"/>
+  <rect x="58" y="28" width="12" height="10" fill="#60A5FA"/>
+  <rect x="62" y="32" width="4" height="6" fill="#1D4ED8"/>
+  
+  <!-- Antenna connector -->
+  <rect x="61" y="38" width="6" height="4" fill="#4B5563"/>
+  
+  <!-- Arms - open, welcoming gesture -->
+  <ellipse cx="22" cy="78" rx="10" ry="14" fill="url(#bodyGradient)" transform="rotate(-15, 22, 78)"/>
+  <ellipse cx="106" cy="78" rx="10" ry="14" fill="url(#bodyGradient)" transform="rotate(15, 106, 78)"/>
+  
+  <!-- Feet -->
+  <ellipse cx="48" cy="116" rx="14" ry="8" fill="url(#bodyGradient)"/>
+  <ellipse cx="80" cy="116" rx="14" ry="8" fill="url(#bodyGradient)"/>
+  
+  <!-- Chest light - calming green -->
+  <circle cx="64" cy="98" r="6" fill="#34D399"/>
+  <circle cx="64" cy="98" r="3" fill="#86EFAC"/>
+</svg>

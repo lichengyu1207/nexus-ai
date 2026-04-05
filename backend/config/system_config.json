@@ -1,0 +1,25 @@
+{
+  "system": {
+    "name": "智能体生态系统",
+    "version": "1.0.0",
+    "debug": false
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8000
+  },
+  "cost": {
+    "daily_budget": 100,
+    "warning_threshold": 80,
+    "critical_threshold": 95
+  },
+  "swarm": {
+    "num_agents": 10,
+    "communication_radius": 5,
+    "max_hops": 3
+  },
+  "talent": {
+    "transaction_fee": 0.1,
+    "max_skill_slots": 6
+  }
+}

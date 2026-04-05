@@ -1,0 +1,48 @@
+{
+  "priceTrend": {
+    "title": "房价趋势（近12个月）",
+    "data": [
+      { "month": "1月", "price": 115000 },
+      { "month": "2月", "price": 116500 },
+      { "month": "3月", "price": 117000 },
+      { "month": "4月", "price": 116800 },
+      { "month": "5月", "price": 118000 },
+      { "month": "6月", "price": 119500 },
+      { "month": "7月", "price": 120000 },
+      { "month": "8月", "price": 121000 },
+      { "month": "9月", "price": 122000 },
+      { "month": "10月", "price": 123000 },
+      { "month": "11月", "price": 124000 },
+      { "month": "12月", "price": 125000 }
+    ]
+  },
+  "areaCompare": {
+    "title": "南山区各板块均价对比",
+    "data": [
+      { "area": "深圳湾", "price": 180000, "color": "#6366f1" },
+      { "area": "后海", "price": 150000, "color": "#10b981" },
+      { "area": "科技园", "price": 135000, "color": "#3b82f6" },
+      { "area": "蛇口", "price": 120000, "color": "#f59e0b" },
+      { "area": "西丽", "price": 95000, "color": "#ef4444" }
+    ]
+  },
+  "facility": {
+    "title": "配套设施分布",
+    "data": [
+      { "type": "学校", "count": 45, "icon": "🎓" },
+      { "type": "医院", "count": 12, "icon": "🏥" },
+      { "type": "商场", "count": 28, "icon": "🛒" },
+      { "type": "地铁", "count": 18, "icon": "🚇" },
+      { "type": "公园", "count": 15, "icon": "🌳" }
+    ]
+  },
+  "investment": {
+    "title": "投资回报分析",
+    "data": [
+      { "year": "第1年", "return": 5.2 },
+      { "year": "第3年", "return": 18.5 },
+      { "year": "第5年", "return": 35.8 },
+      { "year": "第10年", "return": 89.2 }
+    ]
+  }
+}

@@ -1,0 +1,170 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# UV
+.uv/
+uv.lock
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+coverage-*.xml
+*.iml
+
+# Testing
+.pytest_cache/
+.coverage
+coverage-*.xml
+htmlcov/
+.tox/
+.mypy_cache/
+ruff_cache/
+
+# Playwright
+playwright-report/
+playwright/.cache/
+test-results/
+
+# Environment variables (NEVER commit secrets!)
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.sample
+.env.staging
+backend/.env
+gatekeeper/.env
+worry_eraser/.env
+
+# Logs
+*.log
+logs/
+access.log
+error.log
+app.log*
+
+# Database files
+*.db
+*.sqlite3
+*.sqlite
+data/*.db
+backend/data/*.db
+worry_eraser/data.db
+server/openapi.json
+server/.generated/
+
+# Temporary / debug files
+tmp/
+temp/
+*.tmp
+_debug_*.py
+_check_*.py
+_fix_*.py
+_diag_*.py
+_insert_*.py
+_prepare_*.py
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Build output
+dist/
+.next/
+out/
+
+# Redis binaries
+redis-*.exe
+redis-*.pdb
+redis.zip
+
+# Archives (should be in .gitignore, not in repo)
+*.zip
+*.tar.gz
+*.rar
+archives.zip
+dist.zip
+data.zip
+
+# Binary artifacts
+*.dll
+*.exe
+*.bin
+EventLog.dll
+
+# Test outputs
+out.txt
+output.txt
+result.txt
+final_result.txt
+final_test.txt
+test_output.txt
+test_report.txt
+report.txt
+vite_log.txt
+debug_report.json
+full_report.json
+new_report.json
+report_content.json
+api_response.json
+chart_test.html
+frontend.html
+index.html
+report_luxun.html
+report_zhouyu.html
+
+# Sensitive documents (soft copyright, etc.)
+房都督AI源代码_软著用.docx
+房都督AI源代码文档_软著用.md
+
+# Claude AI
+.claude/
+
+# Local notes
+research_plan.md
+rearch_plan.md
+
+# Performance reports
+performance_test_report.md
+performance_test_report.txt
+
+# Weird files that shouldn't exist in root
+{

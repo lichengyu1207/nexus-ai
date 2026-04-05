@@ -1,0 +1,265 @@
+.recruit-animation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.recruit-animation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summon-phase {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.magic-circle {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 3px solid;
+  position: relative;
+  animation: rotate 4s linear infinite;
+}
+
+.inner-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  animation: rotateReverse 3s linear infinite;
+}
+
+.rune {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  color: inherit;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.rune-1 { top: 10px; left: 50%; transform: translateX(-50%); }
+.rune-2 { top: 50%; right: 10px; transform: translateY(-50%); }
+.rune-3 { bottom: 10px; left: 50%; transform: translateX(-50%); }
+.rune-4 { top: 50%; left: 10px; transform: translateY(-50%); }
+.rune-5 { top: 30%; left: 30%; }
+
+.summon-text {
+  margin-top: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 8px;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: float 2s ease-in-out infinite;
+}
+
+.reveal-phase {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.5s ease-out;
+}
+
+.reveal-phase.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.agent-card-reveal {
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  border-radius: 20px;
+  padding: 30px;
+  min-width: 350px;
+  max-width: 400px;
+  border: 2px solid;
+  position: relative;
+  animation: cardReveal 0.5s ease-out;
+}
+
+.rarity-badge {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.agent-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.avatar-icon {
+  font-size: 48px;
+}
+
+.agent-name {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  margin: 0 0 8px;
+}
+
+.agent-department {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.card-body {
+  margin-bottom: 20px;
+}
+
+.skills-section h4 {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skill-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 12px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skill-name {
+  font-weight: 600;
+  color: white;
+  font-size: 15px;
+}
+
+.skill-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.card-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-continue,
+.btn-detail {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-continue {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.btn-continue:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-detail {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.btn-detail:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateReverse {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px currentColor; }
+  to { text-shadow: 0 0 30px currentColor, 0 0 50px currentColor; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+  50% { transform: translateY(-20px) scale(1.5); opacity: 0.5; }
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotateY(180deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}

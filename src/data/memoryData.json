@@ -1,0 +1,174 @@
+{
+  "memories": [
+    {
+      "id": "mem_001",
+      "date": "2026-03-19",
+      "summary": "分析深圳南山区房产投资价值",
+      "agentId": "gongbu",
+      "graphNodeId": "node_shenzhen",
+      "importance": 0.95,
+      "type": "userMemory",
+      "details": {
+        "propertyType": "住宅",
+        "area": "南山区",
+        "priceRange": "800-1200万",
+        "conclusion": "投资价值高，建议关注地铁沿线",
+        "userIntent": "投资购房",
+        "timeSpent": "45秒"
+      }
+    },
+    {
+      "id": "mem_002",
+      "date": "2026-03-18",
+      "summary": "用户偏好学区房，关注教育资源",
+      "agentId": "hubu",
+      "graphNodeId": "node_education",
+      "importance": 0.9,
+      "type": "userMemory",
+      "details": {
+        "preference": "学区房优先",
+        "budget": "1000万以内",
+        "children": "1个孩子，即将入学",
+        "targetSchools": ["深圳实验学校", "南山外国语"],
+        "priority": "高"
+      }
+    },
+    {
+      "id": "mem_003",
+      "date": "2026-03-17",
+      "summary": "检测到异常IP访问模式",
+      "agentId": "bingbu",
+      "graphNodeId": "node_security",
+      "importance": 0.98,
+      "type": "businessData",
+      "details": {
+        "ip": "192.168.1.xxx",
+        "pattern": "高频请求",
+        "action": "已自动拦截",
+        "threatLevel": "中等",
+        "blockedAt": "2026-03-17T14:32:00Z"
+      }
+    },
+    {
+      "id": "mem_004",
+      "date": "2026-03-16",
+      "summary": "市场行情：上海房价稳中有升",
+      "agentId": "libu",
+      "graphNodeId": "node_market",
+      "importance": 0.8,
+      "type": "externalKnowledge",
+      "details": {
+        "region": "上海",
+        "trend": "上涨2.3%",
+        "forecast": "持续稳定",
+        "dataSource": "国家统计局",
+        "lastUpdated": "2026-03-15"
+      }
+    },
+    {
+      "id": "mem_005",
+      "date": "2026-03-15",
+      "summary": "用户信用评级更新为优秀",
+      "agentId": "xingbu",
+      "graphNodeId": "node_credit",
+      "importance": 0.85,
+      "type": "businessData",
+      "details": {
+        "oldRating": "良好",
+        "newRating": "优秀",
+        "reason": "按时还款记录良好",
+        "creditScore": 780,
+        "maxLoanAmount": "800万"
+      }
+    },
+    {
+      "id": "mem_006",
+      "date": "2026-03-14",
+      "summary": "北京朝阳区新盘推荐",
+      "agentId": "gongbu",
+      "graphNodeId": "node_beijing",
+      "importance": 0.75,
+      "type": "userMemory",
+      "details": {
+        "projects": ["望京SOHO", "朝阳公园壹号", "国贸三期"],
+        "priceRange": "500-800万",
+        "feature": "地铁直达",
+        "completionDate": "2026年Q4"
+      }
+    },
+    {
+      "id": "mem_007",
+      "date": "2026-03-13",
+      "summary": "广州天河区商业地产分析",
+      "agentId": "gongbu",
+      "graphNodeId": "node_guangzhou",
+      "importance": 0.7,
+      "type": "userMemory",
+      "details": {
+        "propertyType": "商业写字楼",
+        "area": "天河区珠江新城",
+        "priceRange": "3-5万/平米",
+        "rentalYield": "4.5%",
+        "recommendation": "适合长期持有"
+      }
+    },
+    {
+      "id": "mem_008",
+      "date": "2026-03-12",
+      "summary": "杭州西湖区学区房调研",
+      "agentId": "hubu",
+      "graphNodeId": "node_hangzhou",
+      "importance": 0.82,
+      "type": "userMemory",
+      "details": {
+        "targetArea": "西湖区",
+        "schoolDistrict": "学军小学",
+        "priceRange": "600-900万",
+        "ageLimit": "房龄20年以内",
+        "notes": "竞争激烈，需提前准备"
+      }
+    },
+    {
+      "id": "mem_009",
+      "date": "2026-03-11",
+      "summary": "成都高新区投资潜力分析",
+      "agentId": "libu",
+      "graphNodeId": "node_chengdu",
+      "importance": 0.68,
+      "type": "externalKnowledge",
+      "details": {
+        "region": "成都高新区",
+        "growthRate": "8.5%",
+        "policy": "人才引进优惠",
+        "infrastructure": "地铁5号线开通",
+        "forecast": "持续上涨"
+      }
+    },
+    {
+      "id": "mem_010",
+      "date": "2026-03-10",
+      "summary": "南京河西新城发展规划",
+      "agentId": "libu",
+      "graphNodeId": "node_nanjing",
+      "importance": 0.65,
+      "type": "externalKnowledge",
+      "details": {
+        "region": "南京河西新城",
+        "developmentPhase": "第三期",
+        "keyProjects": ["金融城", "国际医院", "国际学校"],
+        "expectedCompletion": "2028年",
+        "investmentPotential": "高"
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-03-20",
+    "totalMemories": 10,
+    "categories": {
+      "userMemory": 5,
+      "businessData": 2,
+      "externalKnowledge": 3
+    }
+  }
+}

@@ -1,0 +1,393 @@
+.recruit-market {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 60px);
+}
+
+.market-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.market-header h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.integral-display {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  color: white;
+  font-size: 16px;
+}
+
+.main-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 15px;
+}
+
+.main-tab {
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.main-tab.active {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.main-tab:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.recruit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.recruit-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.recruit-card {
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  border-radius: 16px;
+  padding: 25px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.recruit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.recruit-card.premium {
+  border-color: rgba(243, 156, 18, 0.3);
+}
+
+.recruit-card .card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.recruit-card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+
+.recruit-card .cost {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 14px;
+  color: #f39c12;
+  font-weight: 600;
+}
+
+.recommend-tag {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.probability-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.prob-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.prob-item .rarity {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+.prob-item .rarity.n { background: #9e9e9e; }
+.prob-item .rarity.r { background: #3498db; }
+.prob-item .rarity.sr { background: #9b59b6; }
+.prob-item .rarity.ssr { background: #f39c12; }
+.prob-item .rarity.ur { background: #e74c3c; }
+
+.recruit-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.recruit-btn.premium {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.recruit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.recruit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.guarantee-section {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.guarantee-section h4 {
+  font-size: 16px;
+  color: white;
+  margin: 0 0 15px;
+}
+
+.guarantee-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.guarantee-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.guarantee-item .label {
+  width: 120px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.guarantee-item .progress-bar {
+  flex: 1;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.guarantee-item .progress-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.guarantee-item .progress-fill.sr {
+  background: linear-gradient(90deg, #9b59b6, #8e44ad);
+}
+
+.guarantee-item .progress-fill.ssr {
+  background: linear-gradient(90deg, #f39c12, #e67e22);
+}
+
+.guarantee-item .count {
+  width: 50px;
+  text-align: right;
+  font-size: 13px;
+  color: white;
+  font-weight: 500;
+}
+
+.total-recruits {
+  margin-top: 15px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.agents-section {
+  min-height: 400px;
+}
+
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.agent-card {
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  border-radius: 12px;
+  padding: 15px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.agent-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.agent-card .rarity-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 12px 12px 0 0;
+}
+
+.agent-card .agent-avatar {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.agent-card .agent-info {
+  text-align: center;
+}
+
+.agent-card h4 {
+  font-size: 15px;
+  color: white;
+  margin: 0 0 5px;
+}
+
+.agent-card .agent-rarity {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 0 5px;
+}
+
+.agent-card .agent-level {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 3px;
+}
+
+.agent-card .agent-dept {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.status-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-dot.working {
+  background: #2ecc71;
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+}
+
+.status-dot.idle {
+  background: #f1c40f;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.empty-state button {
+  margin-top: 15px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.empty-state button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+}
+
+@media (max-width: 768px) {
+  .recruit-market {
+    padding: 15px;
+  }
+
+  .market-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .recruit-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .agents-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}

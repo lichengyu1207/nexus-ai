@@ -1,0 +1,108 @@
+{
+  "milestones": [
+    {
+      "id": "milestone_1",
+      "name": "初级觉醒",
+      "description": "智能体开始具备基础认知能力",
+      "requiredProgress": 25,
+      "abilities": [
+        {
+          "id": "ability_1_1",
+          "name": "基础数据分析",
+          "description": "能够进行简单的数据统计和分析",
+          "icon": "chart-bar"
+        },
+        {
+          "id": "ability_1_2",
+          "name": "简单模式识别",
+          "description": "识别常见的数据模式和趋势",
+          "icon": "search"
+        }
+      ]
+    },
+    {
+      "id": "milestone_2",
+      "name": "中级进化",
+      "description": "智能体获得跨领域协作能力",
+      "requiredProgress": 50,
+      "abilities": [
+        {
+          "id": "ability_2_1",
+          "name": "多轮诱导检测",
+          "description": "识别复杂的攻击模式和诱导行为",
+          "icon": "shield"
+        },
+        {
+          "id": "ability_2_2",
+          "name": "情感识别",
+          "description": "理解用户情绪并调整交互方式",
+          "icon": "heart"
+        },
+        {
+          "id": "ability_2_3",
+          "name": "知识关联",
+          "description": "建立跨领域知识图谱",
+          "icon": "network"
+        }
+      ]
+    },
+    {
+      "id": "milestone_3",
+      "name": "高级智慧",
+      "description": "智能体具备深度推理和预测能力",
+      "requiredProgress": 75,
+      "abilities": [
+        {
+          "id": "ability_3_1",
+          "name": "预测分析",
+          "description": "基于历史数据预测未来趋势",
+          "icon": "trending-up"
+        },
+        {
+          "id": "ability_3_2",
+          "name": "主动防御",
+          "description": "自动识别并阻止潜在威胁",
+          "icon": "lock"
+        },
+        {
+          "id": "ability_3_3",
+          "name": "智能推荐",
+          "description": "基于用户画像提供个性化建议",
+          "icon": "star"
+        }
+      ]
+    },
+    {
+      "id": "milestone_4",
+      "name": "终极形态",
+      "description": "智能体集群实现完全自主进化",
+      "requiredProgress": 100,
+      "abilities": [
+        {
+          "id": "ability_4_1",
+          "name": "自我进化",
+          "description": "无需人工干预持续优化自身",
+          "icon": "infinity"
+        },
+        {
+          "id": "ability_4_2",
+          "name": "集体智慧",
+          "description": "所有智能体共享知识和经验",
+          "icon": "users"
+        },
+        {
+          "id": "ability_4_3",
+          "name": "创造性思维",
+          "description": "生成创新性的解决方案",
+          "icon": "lightbulb"
+        }
+      ]
+    }
+  ],
+  "progressSources": {
+    "memoryInjection": 5,
+    "userInteraction": 2,
+    "taskCompletion": 3,
+    "miningSuccess": 4
+  }
+}

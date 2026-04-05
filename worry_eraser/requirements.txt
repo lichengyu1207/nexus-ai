@@ -1,0 +1,7 @@
+fastapi==0.115.11
+uvicorn[standard]==0.34.0
+python-multipart==0.0.7
+aiofiles==23.2.1
+pydantic==2.6.4
+python-dotenv==1.0.0
+psycopg2-binary==2.9.9

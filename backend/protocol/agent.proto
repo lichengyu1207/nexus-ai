@@ -1,0 +1,159 @@
+"""
+智能体通信协议 - gRPC+Protobuf
+提升蜂群协同效率，支持服务发现
+"""
+
+syntax = "proto3";
+
+package agent;
+
+option go_package = "./proto;agent";
+
+enum MessageType {
+    MESSAGE_TYPE_UNSPECIFIED = 0;
+    MESSAGE_TYPE_TASK = 1;
+    MESSAGE_TYPE_RESULT = 2;
+    MESSAGE_TYPE_QUERY = 3;
+    MESSAGE_TYPE_RESPONSE = 4;
+    MESSAGE_TYPE_HEARTBEAT = 5;
+    MESSAGE_TYPE_COORDINATION = 6;
+    MESSAGE_TYPE_BROADCAST = 7;
+    MESSAGE_TYPE_EMERGENCY = 8;
+}
+
+enum Priority {
+    PRIORITY_UNSPECIFIED = 0;
+    PRIORITY_LOW = 1;
+    PRIORITY_NORMAL = 2;
+    PRIORITY_HIGH = 3;
+    PRIORITY_CRITICAL = 4;
+}
+
+enum AgentRole {
+    AGENT_ROLE_UNSPECIFIED = 0;
+    AGENT_ROLE_COORDINATOR = 1;
+    AGENT_ROLE_WORKER = 2;
+    AGENT_ROLE_ANALYST = 3;
+    AGENT_ROLE_DEFENDER = 4;
+    AGENT_ROLE_ATTACKER = 5;
+    AGENT_ROLE_MEMORY = 6;
+    AGENT_ROLE_COMPLIANCE = 7;
+}
+
+message AgentInfo {
+    string agent_id = 1;
+    string name = 2;
+    AgentRole role = 3;
+    repeated string capabilities = 4;
+    string endpoint = 5;
+    int64 last_heartbeat = 6;
+    map<string, string> metadata = 7;
+}
+
+message AgentMessage {
+    string message_id = 1;
+    string source_agent_id = 2;
+    string target_agent_id = 3;
+    MessageType type = 4;
+    Priority priority = 5;
+    bytes payload = 6;
+    int64 timestamp = 7;
+    int32 ttl = 8;
+    string correlation_id = 9;
+    map<string, string> headers = 10;
+}
+
+message TaskRequest {
+    string task_id = 1;
+    string task_type = 2;
+    bytes parameters = 3;
+    int64 deadline = 4;
+    Priority priority = 5;
+    repeated string required_capabilities = 6;
+    string parent_task_id = 7;
+}
+
+message TaskResult {
+    string task_id = 1;
+    string agent_id = 2;
+    bool success = 3;
+    bytes output = 4;
+    string error_message = 5;
+    int64 start_time = 6;
+    int64 end_time = 7;
+    map<string, double> metrics = 8;
+}
+
+message CoordinationRequest {
+    string coordination_id = 1;
+    repeated string participant_ids = 2;
+    string coordination_type = 3;
+    bytes context = 4;
+    int64 timeout_ms = 5;
+}
+
+message CoordinationResponse {
+    string coordination_id = 1;
+    string agent_id = 2;
+    bool accepted = 3;
+    bytes contribution = 4;
+    string rejection_reason = 5;
+}
+
+message Heartbeat {
+    string agent_id = 1;
+    int64 timestamp = 2;
+    double cpu_usage = 3;
+    double memory_usage = 4;
+    int32 active_tasks = 5;
+    string status = 6;
+}
+
+message ServiceDiscoveryRequest {
+    string service_name = 1;
+    repeated string required_capabilities = 2;
+    AgentRole role_filter = 3;
+}
+
+message ServiceDiscoveryResponse {
+    repeated AgentInfo agents = 1;
+}
+
+service AgentCommunication {
+    rpc SendMessage(AgentMessage) returns (AgentMessageAck);
+    rpc StreamMessages(StreamRequest) returns (stream AgentMessage);
+    rpc ExecuteTask(TaskRequest) returns (TaskResult);
+    rpc Coordinate(CoordinationRequest) returns (stream CoordinationResponse);
+    rpc Heartbeat(Heartbeat) returns (HeartbeatAck);
+    rpc DiscoverServices(ServiceDiscoveryRequest) returns (ServiceDiscoveryResponse);
+    rpc RegisterAgent(AgentInfo) returns (RegistrationAck);
+    rpc UnregisterAgent(AgentInfo) returns (UnregistrationAck);
+}
+
+message AgentMessageAck {
+    string message_id = 1;
+    bool received = 2;
+    int64 timestamp = 3;
+}
+
+message StreamRequest {
+    string agent_id = 1;
+    repeated MessageType message_types = 2;
+}
+
+message HeartbeatAck {
+    bool healthy = 1;
+    repeated string pending_tasks = 2;
+    map<string, string> config_updates = 3;
+}
+
+message RegistrationAck {
+    bool success = 1;
+    string assigned_id = 2;
+    string error_message = 3;
+}
+
+message UnregistrationAck {
+    bool success = 1;
+    string error_message = 2;
+}
